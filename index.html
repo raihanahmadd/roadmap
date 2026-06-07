@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Roadmap: Software Engineer → AI → Kerja di Singapura</title>
+<style>
+  :root{
+    --bg:#f6f7fb;
+    --ink:#1f2430;
+    --muted:#6b7280;
+    --card:#ffffff;
+    --line:#cfd6e4;
+    --spine:#cfd6e4;
+    --yellow:#f6c945;
+    --yellow-d:#caa01f;
+    --green:#22a06b;
+    --green-soft:#e7f6ee;
+    --blue:#3b82f6;
+    --blue-soft:#e7effe;
+    --purple:#8b5cf6;
+    --gray:#9aa3b2;
+    --shadow:0 6px 22px rgba(31,36,48,.08);
+    --shadow-h:0 14px 34px rgba(31,36,48,.16);
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:
+      radial-gradient(900px 500px at 100% -5%, #fff6d9 0, rgba(255,246,217,0) 55%),
+      radial-gradient(900px 500px at 0% 0%, #e9f0ff 0, rgba(233,240,255,0) 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji",sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- HEADER ---------- */
+  .hero{ max-width:1080px;margin:0 auto;padding:46px 20px 10px;text-align:center; }
+  .hero .kicker{
+    display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--yellow-d);background:#fff7da;border:1px solid #f3e3a6;padding:6px 14px;border-radius:999px;
+  }
+  .hero h1{ font-size:clamp(26px,4.6vw,44px);line-height:1.12;margin:16px 0 8px;font-weight:800;letter-spacing:-.02em; }
+  .hero h1 .grad{
+    background:linear-gradient(90deg,#caa01f,#f6c945 55%,#22a06b);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lead{font-size:clamp(15px,2vw,18px);color:var(--muted);max-width:760px;margin:6px auto 0}
+  .profile{ display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px auto 4px;max-width:820px; }
+  .profile span{
+    font-size:12.5px;font-weight:600;background:#fff;border:1px solid var(--line);
+    border-radius:999px;padding:6px 12px;color:#374151;box-shadow:0 1px 2px rgba(0,0,0,.03)
+  }
+
+  /* ---------- STICKY TOOLBAR ---------- */
+  .toolbar{
+    position:sticky;top:0;z-index:40;backdrop-filter:saturate(160%) blur(8px);
+    background:rgba(246,247,251,.82);border-bottom:1px solid var(--line);margin-top:18px;
+  }
+  .toolbar-inner{ max-width:1080px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap; }
+  .progress-wrap{flex:1;min-width:220px}
+  .progress-top{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-bottom:5px;font-weight:600}
+  .progress-bar{height:9px;background:#e6e9f0;border-radius:999px;overflow:hidden}
+  .progress-fill{height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#f6c945,#22a06b);transition:width .35s ease}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:12px;color:#4b5563}
+  .legend b{font-weight:700}
+  .dotL{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:middle}
+  .btn{
+    border:1px solid var(--line);background:#fff;color:#374151;font-weight:600;font-size:12.5px;
+    padding:7px 12px;border-radius:9px;cursor:pointer;transition:.15s
+  }
+  .btn:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
+
+  /* ---------- ROADMAP / SPINE ---------- */
+  .roadmap{position:relative;max-width:1080px;margin:8px auto 60px;padding:10px 20px 0}
+  .roadmap::before{
+    content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;background:var(--spine);
+    transform:translateX(-50%);z-index:0;border-radius:3px;
+  }
+
+  .phase-marker{position:relative;z-index:3;display:flex;justify-content:center;margin:46px 0 8px}
+  .phase-marker .pm-box{
+    text-align:center;color:#1f2430;background:linear-gradient(180deg,#ffffff,#fbfcff);
+    border:2px solid var(--pc,#f6c945);border-radius:16px;padding:14px 22px;box-shadow:var(--shadow);
+    min-width:min(560px,86vw);
+  }
+  .pm-top{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+  .phase-marker .pm-num{
+    display:inline-block;font-size:11px;font-weight:800;letter-spacing:.12em;color:#fff;
+    background:var(--pc,#f6c945);padding:3px 10px;border-radius:999px;text-transform:uppercase
+  }
+  .pm-prog{font-size:11px;font-weight:800;color:#374151;background:#eef1f6;border:1px solid var(--line);padding:3px 9px;border-radius:999px}
+  .pm-prog.done{background:var(--green-soft);color:#13714c;border-color:#bfe6d2}
+  .phase-marker h2{margin:2px 0 4px;font-size:clamp(17px,2.4vw,21px);font-weight:800;letter-spacing:-.01em}
+  .phase-marker .pm-sub{font-size:13px;color:var(--muted);margin:0 auto;max-width:520px}
+  .phase-marker .pm-time{display:inline-block;margin-top:7px;font-size:12px;font-weight:700;color:#374151;background:#f1f3f8;border-radius:999px;padding:3px 11px}
+
+  .topic-row{ position:relative;display:grid;grid-template-columns:1fr 0 1fr;align-items:center;margin:16px 0;z-index:2; }
+  .topic-row::before{content:"";position:absolute;top:50%;height:3px;background:var(--line);z-index:1}
+  .topic-row.left::before{right:50%;width:34px}
+  .topic-row.right::before{left:50%;width:34px}
+  .topic-row::after{
+    content:"";position:absolute;left:50%;top:50%;width:15px;height:15px;border-radius:50%;
+    transform:translate(-50%,-50%);background:var(--dot,#fff);border:3px solid #fff;
+    box-shadow:0 0 0 2px var(--dotring,#cfd6e4);z-index:4;transition:.2s;
+  }
+  .topic-row.left .topic-card{grid-column:1;justify-self:end;margin-right:34px}
+  .topic-row.right .topic-card{grid-column:3;justify-self:start;margin-left:34px}
+
+  .topic-card{
+    position:relative;width:100%;max-width:430px;background:var(--card);border:1.5px solid var(--line);
+    border-left:5px solid var(--lv,#f6c945);border-radius:var(--radius);padding:13px 15px 13px 16px;
+    box-shadow:var(--shadow);cursor:pointer;transition:transform .15s, box-shadow .15s, border-color .15s;
+  }
+  .topic-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-h)}
+  .topic-card .tc-head{display:flex;align-items:flex-start;gap:10px}
+  .topic-card h3{margin:0;font-size:15.5px;font-weight:750;line-height:1.3;flex:1}
+  .topic-card .tc-tag{font-size:12.5px;color:var(--muted);margin:5px 0 0}
+  .topic-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px;align-items:center}
+  .badge{font-size:10.5px;font-weight:800;letter-spacing:.03em;padding:3px 8px;border-radius:6px;text-transform:uppercase}
+  .b-wajib{background:#fff3cf;color:#8a6d10}
+  .b-saran{background:var(--green-soft);color:#13714c}
+  .b-opsi{background:#efe9fe;color:#5b34c2}
+  .b-time{background:#eef1f6;color:#4b5563;text-transform:none;letter-spacing:0;font-weight:700}
+
+  .status-btn{
+    flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:8px;width:30px;height:30px;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:.15s;
+  }
+  .status-btn:hover{box-shadow:var(--shadow)}
+
+  .topic-card[data-st="done"]{background:var(--green-soft);border-color:#bfe6d2}
+  .topic-card[data-st="done"] h3{text-decoration:line-through;text-decoration-color:#9fd3ba;color:#3c6b56}
+  .topic-card[data-st="learning"]{background:var(--blue-soft);border-color:#bcd4fb}
+  .topic-card[data-st="skip"]{opacity:.55}
+
+  /* ---------- DRAWER ---------- */
+  .overlay{position:fixed;inset:0;background:rgba(17,22,33,.45);opacity:0;pointer-events:none;transition:.25s;z-index:60}
+  .overlay.open{opacity:1;pointer-events:auto}
+  .drawer{
+    position:fixed;top:0;right:0;height:100%;width:min(520px,94vw);background:#fff;z-index:70;
+    box-shadow:-18px 0 50px rgba(0,0,0,.22);transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);
+    display:flex;flex-direction:column;
+  }
+  .drawer.open{transform:translateX(0)}
+  .drawer-head{padding:22px 24px 16px;border-bottom:1px solid var(--line);position:relative}
+  .drawer-head .close{position:absolute;top:16px;right:16px;border:none;background:#f1f3f8;width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:17px;color:#4b5563}
+  .drawer-head .close:hover{background:#e6e9f0}
+  .drawer-head h2{margin:0 40px 8px 0;font-size:21px;font-weight:800;letter-spacing:-.01em}
+  .drawer-body{padding:18px 24px 28px;overflow-y:auto;flex:1}
+  .drawer-body h4{margin:22px 0 9px;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--yellow-d)}
+  .drawer-body h4.g{color:var(--green)}
+  .drawer-body p{margin:0 0 6px;color:#374151;font-size:14.5px}
+
+  /* learn list with real-case purpose + checkbox per item */
+  .learn-count{font-size:11px;font-weight:800;color:#13714c;background:var(--green-soft);border:1px solid #bfe6d2;padding:2px 9px;border-radius:999px;margin-left:6px;vertical-align:middle}
+  .learn-list{list-style:none;margin:8px 0 0;padding:0}
+  .learn-list li{display:flex;gap:11px;align-items:flex-start;padding:11px 0 12px;border-bottom:1px dashed #e6e9f0}
+  .learn-list li:last-child{border-bottom:none}
+  .learn-list .chk{flex:0 0 auto;width:21px;height:21px;margin-top:1px;border:2px solid #cfd6e4;border-radius:6px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;line-height:1;transition:.15s;user-select:none}
+  .learn-list .chk:hover{border-color:var(--green)}
+  .learn-list li.checked .chk{background:var(--green);border-color:var(--green)}
+  .learn-list .lc{flex:1;min-width:0}
+  .learn-list .lt{display:block;font-size:14.5px;font-weight:750;color:#1f2430;line-height:1.35}
+  .learn-list li.checked .lt{text-decoration:line-through;text-decoration-color:#9fd3ba;color:#7a8aa0}
+  .learn-list .lu{display:block;font-size:13px;color:var(--muted);margin-top:3px;line-height:1.5}
+  .learn-list .lu b{color:#4b5563;font-weight:700}
+
+  .res a{display:flex;align-items:center;gap:9px;text-decoration:none;color:#1f2430;border:1px solid var(--line);
+    border-radius:10px;padding:9px 12px;margin:7px 0;font-size:13.5px;font-weight:600;transition:.15s;background:#fff}
+  .res a:hover{border-color:var(--yellow);box-shadow:var(--shadow);transform:translateX(2px)}
+  .res a .rico{font-size:15px}
+  .res a .rurl{margin-left:auto;font-size:11.5px;color:var(--muted);font-weight:500}
+  .st-row{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+  .st-pick{flex:1;min-width:90px;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:9px;cursor:pointer;font-weight:700;font-size:12.5px;color:#4b5563;transition:.15s;text-align:center}
+  .st-pick:hover{box-shadow:var(--shadow)}
+  .st-pick.active{color:#fff}
+  .st-pick.active[data-v="todo"]{background:var(--gray);border-color:var(--gray)}
+  .st-pick.active[data-v="learning"]{background:var(--blue);border-color:var(--blue)}
+  .st-pick.active[data-v="done"]{background:var(--green);border-color:var(--green)}
+  .st-pick.active[data-v="skip"]{background:#64748b;border-color:#64748b}
+
+  .foot{max-width:1080px;margin:0 auto 50px;padding:0 20px;text-align:center;color:var(--muted);font-size:13px}
+  .foot .ft-note{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);text-align:left}
+
+  @media (max-width:760px){
+    .roadmap::before{left:22px}
+    .phase-marker{justify-content:flex-start}
+    .phase-marker .pm-box{min-width:0;width:100%;margin-left:0}
+    .topic-row{grid-template-columns:1fr}
+    .topic-row .topic-card{grid-column:1 !important;justify-self:start !important;margin:0 0 0 48px !important;max-width:100%}
+    .topic-row::after{left:22px}
+    .topic-row::before{left:22px;width:26px;right:auto !important}
+  }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <span class="kicker">★ Personal Roadmap</span>
+    <h1>Dari <span class="grad">Python Basic → Software Engineer → AI</span><br/>menuju Karier di Singapura 🇸🇬</h1>
+    <p class="lead">Jalur belajar terstruktur untuk career switcher. Fokus tahap awal: dapat kerja secepat mungkin sebagai Software Engineer (jalur Python Backend), lalu naik level ke spesialisasi AI sambil mengejar pekerjaan dengan visa sponsor di Singapura.</p>
+    <div class="profile">
+      <span>👤 Career switcher</span>
+      <span>🐍 Sudah paham logika & dasar Python</span>
+      <span>🎯 Prioritas: cepat dapat kerja</span>
+      <span>🤖 Tujuan akhir: AI Engineer</span>
+      <span>🇸🇬 Target: kerja di Singapura (EP / visa sponsor)</span>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <div class="toolbar-inner">
+      <div class="progress-wrap">
+        <div class="progress-top"><span>Progress belajar kamu</span><span id="progTxt">0% selesai</span></div>
+        <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
+      </div>
+      <div class="legend">
+        <span><i class="dotL" style="background:#f6c945"></i><b>Wajib</b></span>
+        <span><i class="dotL" style="background:#22a06b"></i><b>Disarankan</b></span>
+        <span><i class="dotL" style="background:#8b5cf6"></i><b>Opsional</b></span>
+        <button class="btn" id="resetBtn" title="Hapus semua progress">↺ Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="roadmap" id="roadmap"></main>
+
+  <div class="foot">
+    <div class="ft-note">
+      <b>Cara pakai:</b> klik tiap kotak topik untuk membuka detail. Di tiap detail kamu akan lihat <b>"Yang kamu pelajari"</b> — setiap konsep dilengkapi <b>kegunaannya di dunia kerja nyata</b>, biar kamu tahu kenapa belajar itu, bukan sekadar menghafal. Tandai status: <b>Belajar / Selesai / Lewati</b> — otomatis tersimpan di browser (localStorage).<br/><br/>
+      <b>Catatan jujur soal Singapura:</b> Employment Pass punya syarat gaji minimum + sistem poin <i>COMPASS</i> (gaji, kualifikasi, keberagaman tim). Untuk career switcher tanpa pengalaman, jalur paling realistis: kuatkan skill → dapat pengalaman dulu (lokal/remote 1–2 tahun) → lalu lamar ke MNC / startup besar yang punya hub engineering di Singapura & terbiasa sponsor visa. Detail di <b>Fase 5</b>.
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-head">
+      <button class="close" id="closeDrawer" aria-label="Tutup">✕</button>
+      <h2 id="dTitle"></h2>
+      <div class="topic-meta" id="dMeta"></div>
+    </div>
+    <div class="drawer-body" id="dBody"></div>
+  </aside>
+
+<script>
+/* ============================================================
+   DATA ROADMAP
+   level: 'wajib' | 'saran' | 'opsi'
+   learn: [{t: konsep, u: kegunaan di dunia nyata}]
+   ============================================================ */
+const PHASES = [
+{
+  id:"f0", num:"FASE 0", color:"#f6c945",
+  title:"Fondasi: Kuasai Python & Cara Berpikir Programmer",
+  sub:"Kamu sudah punya dasar — sekarang kita kunci sampai benar-benar kokoh. Ini pondasi semua hal berikutnya.",
+  time:"≈ 3–5 minggu",
+  topics:[
+    {id:"py-core", level:"wajib", time:"1–2 mgg", title:"Python Inti (Pemantapan)",
+      tag:"Tipe data, kontrol alur, fungsi, modul, virtual env",
+      why:"Sebelum lari, langkahmu harus stabil. 80% pekerjaan harian engineer adalah memanipulasi data & logika dengan bahasa inti — bukan framework keren. Menguasai ini bikin kamu cepat di segala hal berikutnya.",
+      learn:[
+        {t:"Tipe data (str, int, list, dict, set, tuple)", u:"Wadah semua data di aplikasi. <b>Nyatanya:</b> data 1 user disimpan sebagai dict, daftar produk sebagai list, daftar tag unik sebagai set."},
+        {t:"Control flow (if/else, for, while)", u:"Logika pengambilan keputusan aplikasi. <b>Nyatanya:</b> 'kalau stok = 0, nonaktifkan tombol beli' atau 'ulangi kirim untuk tiap penerima'."},
+        {t:"Fungsi (argumen, *args/**kwargs, return, scope)", u:"Memecah kode jadi blok yang dipakai ulang. <b>Nyatanya:</b> fungsi hitung_total() dipanggil di keranjang, checkout, & invoice — tulis sekali, pakai di mana saja."},
+        {t:"List & dict comprehension", u:"Olah data ringkas dalam 1 baris. <b>Nyatanya:</b> ambil semua email dari daftar 1000 user, atau ubah format data dari API sebelum dikirim ke frontend."},
+        {t:"Error handling (try/except/finally, raise)", u:"Supaya app tak crash saat ada masalah. <b>Nyatanya:</b> koneksi database putus → tampilkan pesan rapi & coba ulang, bukan layar error yang bikin user kabur."},
+        {t:"Modules & packages, import", u:"Menata kode jadi banyak file rapi + pakai library orang. <b>Nyatanya:</b> dasar setiap project nyata yang isinya puluhan file, bukan 1 file raksasa."},
+        {t:"Virtual env (venv) + pip + requirements.txt", u:"Isolasi dependency tiap project. <b>Nyatanya:</b> 'jalan di laptopku, jalan juga di server' — tim & server pakai versi library yang sama persis, tanpa konflik."},
+        {t:"f-strings & string formatting", u:"Menyusun teks dinamis. <b>Nyatanya:</b> bikin pesan 'Halo, {nama}! Pesananmu #{id} dikirim' di email atau respons API."}
+      ],
+      res:[{n:"Dokumentasi resmi Python (Tutorial)",u:"https://docs.python.org/3/tutorial/"},{n:"Automate the Boring Stuff (gratis)",u:"https://automatetheboringstuff.com/"},{n:"Real Python",u:"https://realpython.com/"},{n:"freeCodeCamp — Python Full Course (YouTube)",u:"https://www.youtube.com/watch?v=rfscVS0vtbw"}]},
+    {id:"py-oop", level:"wajib", time:"1 mgg", title:"OOP (Object-Oriented Programming)",
+      tag:"Class, object, inheritance, encapsulation",
+      why:"Hampir semua framework backend & library AI (Django, PyTorch) dibangun dengan OOP. Wajib paham supaya bisa baca kode orang lain & menyusun project besar yang rapi.",
+      learn:[
+        {t:"Class & object, __init__", u:"Membuat 'cetakan' data + perilaku. <b>Nyatanya:</b> bikin class User sekali, lalu cetak ribuan objek user dari cetakan itu."},
+        {t:"Attribute & method (instance vs class)", u:"Menyimpan data & aksi dalam satu wadah. <b>Nyatanya:</b> user.email (data) dan user.kirim_notifikasi() (aksi) menempel di objek yang sama."},
+        {t:"Inheritance & super()", u:"Hindari tulis ulang kode. <b>Nyatanya:</b> class Admin mewarisi semua dari User, lalu tinggal tambah hak akses khusus — tak perlu copy-paste."},
+        {t:"Encapsulation & @property", u:"Lindungi & kontrol akses data. <b>Nyatanya:</b> pastikan umur tak bisa di-set negatif, atau hitung harga_final otomatis dari harga + pajak."},
+        {t:"Polymorphism", u:"Satu perintah, banyak bentuk. <b>Nyatanya:</b> .bayar() berjalan beda untuk KartuKredit vs EWallet vs Transfer, tapi dipanggil dengan cara yang sama."},
+        {t:"Dunder methods (__str__, __repr__, __eq__)", u:"Bikin objekmu berperilaku natural. <b>Nyatanya:</b> print(user) menampilkan nama, bukan alamat memori; user1 == user2 membandingkan dengan benar."},
+        {t:"@dataclass", u:"Bikin class penyimpan data tanpa kode bertele-tele. <b>Nyatanya:</b> dipakai untuk model data, konfigurasi, & DTO — sangat umum di codebase modern."}
+      ],
+      res:[{n:"Real Python — OOP in Python 3",u:"https://realpython.com/python3-object-oriented-programming/"},{n:"Corey Schafer — OOP Series (YouTube)",u:"https://www.youtube.com/playlist?list=PL-osiE80TeTsqhIuOqKhwlXsIBIdSeYtc"}]},
+    {id:"py-clean", level:"saran", time:"3–5 hari", title:"Clean Code & Pythonic Style",
+      tag:"PEP8, type hints, linter (ruff/black)",
+      why:"Reviewer & recruiter menilai kerapian kode. Kode bersih = sinyal engineer profesional, bukan sekadar 'bisa jalan'. Ini sering jadi pembeda saat lamaran.",
+      learn:[
+        {t:"PEP 8 style guide", u:"Standar gaya kode Python. <b>Nyatanya:</b> kodemu langsung 'terlihat profesional' & familiar di mata reviewer dari perusahaan mana pun."},
+        {t:"Type hints (x: int -> str)", u:"Menandai tipe data. <b>Nyatanya:</b> editor kasih autocomplete & menangkap bug sebelum dijalankan; standar wajib di codebase modern."},
+        {t:"Formatter (black) & linter (ruff)", u:"Rapikan & cek kode otomatis. <b>Nyatanya:</b> tim besar pakai ini supaya gaya kode seragam — tidak ada lagi debat soal spasi/kutip di code review."},
+        {t:"Penamaan variabel & fungsi yang jelas", u:"Kode dibaca jauh lebih sering daripada ditulis. <b>Nyatanya:</b> nama baik = kolega (dan kamu 6 bulan lagi) langsung paham tanpa bertanya."},
+        {t:"DRY (Don't Repeat Yourself) & fungsi kecil", u:"Jangan ulang logika yang sama. <b>Nyatanya:</b> kalau aturan berubah, kamu ubah 1 tempat — bukan berburu 20 salinan yang tersebar."}
+      ],
+      res:[{n:"PEP 8 — Style Guide",u:"https://peps.python.org/pep-0008/"},{n:"Ruff (linter cepat)",u:"https://docs.astral.sh/ruff/"}]},
+    {id:"problem-solving", level:"wajib", time:"berkelanjutan", title:"Problem Solving & Debugging Mindset",
+      tag:"Memecah masalah, pseudocode, baca error",
+      why:"Inti pekerjaan engineer bukan hafal sintaks, tapi memecahkan masalah. Kemampuan membaca error & berpikir sistematis adalah pembeda utama antara yang stuck dan yang produktif.",
+      learn:[
+        {t:"Memecah masalah besar jadi langkah kecil", u:"Skill paling inti seorang engineer. <b>Nyatanya:</b> fitur 'checkout' dipecah jadi validasi keranjang → hitung ongkir → proses bayar → simpan order → kirim email."},
+        {t:"Menulis pseudocode sebelum koding", u:"Rancang logika dulu dalam bahasa manusia. <b>Nyatanya:</b> hemat waktu & hindari menulis ulang karena arah sudah jelas sebelum mengetik."},
+        {t:"Membaca traceback / pesan error", u:"Error Python menunjuk baris & sebabnya. <b>Nyatanya:</b> bisa baca = bisa perbaiki sendiri dalam menit, tanpa menunggu bantuan orang lain."},
+        {t:"Debugging (print, breakpoint(), debugger)", u:"Lacak kenapa hasil salah. <b>Nyatanya:</b> ini aktivitas harian yang menentukan secepat apa kamu menyelesaikan tugas di kerjaan."},
+        {t:"Bertanya efektif & baca dokumentasi", u:"90% jawaban ada di docs/Google. <b>Nyatanya:</b> engineer hebat bukan yang hafal semua, tapi yang cepat menemukan & menerapkan solusi."}
+      ],
+      res:[{n:"How to Think Like a Programmer",u:"https://www.freecodecamp.org/news/how-to-think-like-a-programmer-lessons-in-problem-solving-d1d8bf1de7d2/"}]}
+  ]
+},
+{
+  id:"f1", num:"FASE 1", color:"#3b82f6",
+  title:"Computer Science & Tooling Wajib Engineer",
+  sub:"Skill yang dipakai SETIAP HARI di pekerjaan: terminal, Git, cara web bekerja, struktur data, dan database. Tanpa ini, kamu sulit lolos kerja.",
+  time:"≈ 4–6 minggu",
+  topics:[
+    {id:"cli", level:"wajib", time:"3–5 hari", title:"Command Line / Terminal",
+      tag:"Navigasi, file, pipe, shell dasar",
+      why:"Semua engineer hidup di terminal: jalankan server, git, docker, deploy. Saat masuk ke server produksi, sering tidak ada GUI sama sekali — hanya terminal.",
+      learn:[
+        {t:"Navigasi (cd, ls, pwd, mkdir, rm, cp, mv)", u:"Bergerak & kelola file tanpa mouse. <b>Nyatanya:</b> wajib saat SSH ke server produksi yang cuma punya layar hitam."},
+        {t:"Lihat & cari (cat, less, grep, find)", u:"Cari teks/file di antara ribuan baris. <b>Nyatanya:</b> 'grep ERROR app.log' untuk menemukan penyebab crash di log server."},
+        {t:"Pipe & redirect (|, >, >>)", u:"Rangkai perintah & simpan output. <b>Nyatanya:</b> saring log, hitung jumlah error, lalu simpan hasilnya ke file laporan."},
+        {t:"Permission (chmod) & environment variable", u:"Atur hak akses & simpan config rahasia. <b>Nyatanya:</b> API key & password disimpan sebagai env var, bukan ditulis di kode."},
+        {t:"Bash / PowerShell dasar (scripting)", u:"Otomasi tugas berulang. <b>Nyatanya:</b> 1 script untuk backup database atau deploy, dijalankan dengan satu perintah."}
+      ],
+      res:[{n:"MIT — The Missing Semester",u:"https://missing.csail.mit.edu/"},{n:"Linux Journey",u:"https://linuxjourney.com/"}]},
+    {id:"git", level:"wajib", time:"4–6 hari", title:"Git & GitHub",
+      tag:"Version control — wajib mutlak untuk kerja",
+      why:"TIDAK ADA pekerjaan software tanpa Git. Ini cara tim berkolaborasi & cara kamu kembali ke versi aman saat ada yang rusak. GitHub-mu juga jadi 'portofolio hidup' yang dilihat recruiter.",
+      learn:[
+        {t:"init, add, commit, status, log", u:"Merekam tiap perubahan kode. <b>Nyatanya:</b> bisa kembali ke versi kemarin saat fitur baru malah merusak yang lama."},
+        {t:"Branch, merge, & resolve conflict", u:"Kerjakan fitur tanpa ganggu kode utama. <b>Nyatanya:</b> menyelesaikan conflict saat 2 orang mengubah file sama = skill harian di tim."},
+        {t:"Remote (clone, push, pull, fetch)", u:"Sinkron kode dengan tim lewat GitHub. <b>Nyatanya:</b> tarik perubahan rekan tiap pagi, dorong hasil kerjamu tiap sore."},
+        {t:"Pull Request (PR) & code review", u:"Alur kerja tim profesional. <b>Nyatanya:</b> kodemu di-review sebelum digabung — persis yang kamu lakukan tiap hari di kantor."},
+        {t:".gitignore", u:"Jangan upload file rahasia/sampah. <b>Nyatanya:</b> mencegah password, venv, & file besar ikut ter-commit ke repo publik."},
+        {t:"Commit message yang baik", u:"Riwayat yang jelas. <b>Nyatanya:</b> tim (& recruiter) bisa paham apa & kenapa kamu mengubah sesuatu, bahkan berbulan kemudian."}
+      ],
+      res:[{n:"Learn Git Branching (interaktif)",u:"https://learngitbranching.js.org/"},{n:"GitHub Skills",u:"https://skills.github.com/"},{n:"Pro Git Book (gratis)",u:"https://git-scm.com/book/en/v2"}]},
+    {id:"web-how", level:"wajib", time:"3–4 hari", title:"Cara Kerja Internet & Web",
+      tag:"HTTP, DNS, client-server, REST, JSON",
+      why:"Sebagai backend engineer kamu membangun layanan yang berkomunikasi lewat HTTP. Wajib paham apa yang sebenarnya terjadi saat user mengklik sebuah tombol.",
+      learn:[
+        {t:"Client–server model", u:"Siapa meminta & siapa menjawab. <b>Nyatanya:</b> dasar memahami semua aplikasi web — browser/app (client) minta, backend-mu (server) jawab."},
+        {t:"HTTP method & status code", u:"Bahasa komunikasi API. <b>Nyatanya:</b> GET ambil data, POST kirim data; 200 = sukses, 401 = belum login, 404 = tidak ada, 500 = error server."},
+        {t:"DNS & cara domain bekerja", u:"Bagaimana 'namaweb.com' jadi alamat server. <b>Nyatanya:</b> berguna saat deploy app & saat debug 'kenapa domainku belum bisa diakses'."},
+        {t:"REST API & format JSON", u:"Format komunikasi antar aplikasi. <b>Nyatanya:</b> backend-mu mengirim & menerima data dalam JSON setiap detik — ke frontend, mobile app, atau service lain."},
+        {t:"Headers, body, query params", u:"Bagian-bagian sebuah request. <b>Nyatanya:</b> token login di header, data form di body, filter pencarian di query (?kategori=buku)."},
+        {t:"Konsep API & endpoint", u:"'Pintu' aplikasi yang kamu bangun. <b>Nyatanya:</b> /users untuk data user, /login untuk masuk — tiap pintu punya fungsi spesifik."}
+      ],
+      res:[{n:"MDN — How the Web works",u:"https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/How_the_Web_works"},{n:"roadmap.sh — Backend",u:"https://roadmap.sh/backend"}]},
+    {id:"dsa", level:"wajib", time:"2–3 mgg", title:"Struktur Data & Algoritma (Dasar)",
+      tag:"Array, hashmap, tree, sorting, Big-O",
+      why:"Wajib untuk LULUS technical interview (terutama perusahaan besar di Singapura: Shopee, Grab, TikTok, Google). Juga membuat kodemu efisien saat data membesar.",
+      learn:[
+        {t:"Array, linked list, stack, queue", u:"Wadah data dasar. <b>Nyatanya:</b> memilih yang tepat menentukan cepat-lambatnya fitur — mis. queue untuk antrian notifikasi, stack untuk fitur undo."},
+        {t:"Hash map / dictionary & set", u:"Lookup data instan (O(1)). <b>Nyatanya:</b> cek 'apakah email sudah terdaftar?' secara instan tanpa loop ribuan baris satu per satu."},
+        {t:"Tree & graph (dasar)", u:"Model data berhirarki/berelasi. <b>Nyatanya:</b> struktur folder & komentar bersarang (tree), atau jaringan pertemanan & rute peta (graph)."},
+        {t:"Big-O notation", u:"Ukur efisiensi kode. <b>Nyatanya:</b> paham kenapa solusimu lambat saat data jadi jutaan, dan cara memperbaikinya sebelum bikin server tumbang."},
+        {t:"Sorting & searching", u:"Operasi paling umum. <b>Nyatanya:</b> urutkan produk dari termurah, cari item tertentu cepat; sering keluar di interview."},
+        {t:"Recursion", u:"Selesaikan masalah yang mengulang dirinya. <b>Nyatanya:</b> telusuri folder bertingkat atau komentar balasan-dari-balasan tanpa tahu kedalamannya."},
+        {t:"Pola: two pointers, sliding window, hashing", u:"Trik standar penyelesaian. <b>Nyatanya:</b> menjawab mayoritas soal interview dengan efisien — bukan brute force yang lambat."}
+      ],
+      res:[{n:"NeetCode (roadmap + video)",u:"https://neetcode.io/roadmap"},{n:"Grokking Algorithms (buku ramah pemula)",u:"https://www.manning.com/books/grokking-algorithms"},{n:"VisuAlgo — visualisasi",u:"https://visualgo.net/en"}]},
+    {id:"sql", level:"wajib", time:"1–2 mgg", title:"Database & SQL",
+      tag:"Relational DB, SQL, PostgreSQL, schema design",
+      why:"Hampir semua aplikasi menyimpan data. SQL adalah skill abadi yang selalu diminta di lowongan backend & data/AI — sudah puluhan tahun dan tetap relevan.",
+      learn:[
+        {t:"Konsep relational database", u:"Cara data nyata disimpan & dihubungkan. <b>Nyatanya:</b> tabel User terhubung ke tabel Order — 1 user punya banyak order."},
+        {t:"SELECT, WHERE, ORDER BY, LIMIT", u:"Ambil & saring data. <b>Nyatanya:</b> query paling sering kamu tulis: 'ambil 10 order terbaru milik user ini'."},
+        {t:"JOIN, GROUP BY, aggregate", u:"Gabung tabel & rangkum data. <b>Nyatanya:</b> 'total penjualan per pelanggan bulan ini' — jantung tiap dashboard & laporan."},
+        {t:"INSERT / UPDATE / DELETE", u:"Mengubah data. <b>Nyatanya:</b> operasi di balik setiap tombol simpan, edit profil, & hapus item."},
+        {t:"Schema design, primary/foreign key, normalisasi", u:"Rancang struktur DB yang benar sejak awal. <b>Nyatanya:</b> mencegah data berantakan & duplikat yang menyiksa di kemudian hari."},
+        {t:"Index & dasar performa query", u:"Percepat pencarian data. <b>Nyatanya:</b> pembeda app yang responsif vs lemot saat data sudah jutaan baris."},
+        {t:"PostgreSQL", u:"Database pilihan industri. <b>Nyatanya:</b> yang paling sering muncul di persyaratan lowongan backend & data."}
+      ],
+      res:[{n:"SQLBolt (interaktif)",u:"https://sqlbolt.com/"},{n:"Mode — SQL Tutorial",u:"https://mode.com/sql-tutorial/"},{n:"PostgreSQL Tutorial",u:"https://www.postgresqltutorial.com/"}]}
+  ]
+},
+{
+  id:"f2", num:"FASE 2", color:"#22a06b",
+  title:"Backend Development dengan Python",
+  sub:"Inti jalur 'cepat dapat kerja'. Kamu sudah pegang Python, jadi membangun backend = jalur paling efisien jadi Software Engineer yang dibayar — sekaligus jembatan ke AI.",
+  time:"≈ 8–10 minggu",
+  topics:[
+    {id:"api-design", level:"saran", time:"3–4 hari", title:"Konsep REST API & Desain API",
+      tag:"Request/response, resource, status code",
+      why:"Sebelum koding framework, pahami dulu prinsip API yang baik supaya yang kamu bangun rapi, konsisten, & profesional — bukan asal jalan.",
+      learn:[
+        {t:"Prinsip REST & resource modeling", u:"Rancang API yang konsisten. <b>Nyatanya:</b> /users/123/orders langsung dimengerti siapa pun — terstruktur & mudah ditebak."},
+        {t:"Struktur endpoint yang baik", u:"URL rapi & dapat diprediksi. <b>Nyatanya:</b> bikin tim frontend & klien lain mudah integrasi tanpa banyak bertanya."},
+        {t:"Status code yang tepat", u:"Komunikasikan hasil dengan benar. <b>Nyatanya:</b> klien tahu sukses/gagal/butuh login dari kode-nya, tak perlu menebak isi respons."},
+        {t:"Versioning & dokumentasi API", u:"Ubah API tanpa merusak aplikasi lama. <b>Nyatanya:</b> /v1 tetap jalan untuk app lama saat kamu rilis /v2."},
+        {t:"Idempotency (dasar)", u:"Aman saat request diulang. <b>Nyatanya:</b> user klik tombol Bayar 2x karena lemot → tetap hanya tertagih sekali."}
+      ],
+      res:[{n:"REST API Tutorial",u:"https://restfulapi.net/"}]},
+    {id:"framework", level:"wajib", time:"3–4 mgg", title:"Framework Backend: FastAPI (utama) / Django",
+      tag:"Pilih satu & kuasai — bangun API beneran",
+      why:"FastAPI = modern, cepat, async, paling cocok untuk integrasi AI (rekomendasi untukmu). Django = 'baterai lengkap', sangat banyak lowongan. Kuasai SATU dulu sampai mahir, jangan lompat-lompat.",
+      learn:[
+        {t:"Routing & path/query parameters", u:"Petakan URL ke fungsi. <b>Nyatanya:</b> inti cara backend merespons; /produk/{id} memanggil fungsi yang ambil produk tertentu."},
+        {t:"Request body & validasi (Pydantic)", u:"Terima & cek data masuk otomatis. <b>Nyatanya:</b> tolak data salah (email tanpa @, harga negatif) sebelum merusak database."},
+        {t:"Response model & serialization", u:"Bentuk data keluar yang rapi & aman. <b>Nyatanya:</b> otomatis menyembunyikan field sensitif seperti password dari respons API."},
+        {t:"Middleware & dependency injection", u:"Logika lintas-endpoint di satu tempat. <b>Nyatanya:</b> cek login & catat log untuk SEMUA endpoint tanpa menyalin kode di tiap fungsi."},
+        {t:"Error handling & dokumentasi otomatis (Swagger)", u:"Tangani error rapi + docs interaktif. <b>Nyatanya:</b> FastAPI bikin halaman dokumentasi yang bisa langsung dicoba — sangat membantu tim & demo."},
+        {t:"Struktur project yang rapi (layer)", u:"Tata folder berlapis. <b>Nyatanya:</b> project tetap terkelola & enak dibaca saat tumbuh jadi puluhan file — recruiter memperhatikan ini."}
+      ],
+      res:[{n:"FastAPI — Dokumentasi resmi (sangat bagus)",u:"https://fastapi.tiangolo.com/"},{n:"Django — Official Docs",u:"https://docs.djangoproject.com/"},{n:"Django for Beginners (buku)",u:"https://djangoforbeginners.com/"}]},
+    {id:"db-orm", level:"wajib", time:"1–2 mgg", title:"Database dalam Praktik (ORM & Migrasi)",
+      tag:"SQLAlchemy / Django ORM, migration, CRUD",
+      why:"Menghubungkan aplikasi ke database adalah inti backend. ORM membuatmu produktif tanpa harus menulis SQL mentah terus-menerus.",
+      learn:[
+        {t:"ORM (SQLAlchemy / Django ORM)", u:"Akses DB pakai objek Python, bukan SQL mentah. <b>Nyatanya:</b> user.save() lebih cepat ditulis & lebih aman dari SQL injection."},
+        {t:"Model & relasi (1-ke-banyak, banyak-ke-banyak)", u:"Definisikan tabel & hubungannya di kode. <b>Nyatanya:</b> 1 User punya banyak Post; 1 Post punya banyak Tag."},
+        {t:"Migrasi (Alembic / Django migrations)", u:"Ubah struktur DB secara terversi & aman. <b>Nyatanya:</b> tambah kolom baru di database produksi tanpa kehilangan data, & tim tetap sinkron."},
+        {t:"CRUD lengkap lewat API", u:"Create-Read-Update-Delete. <b>Nyatanya:</b> 90% fitur aplikasi nyata pada dasarnya adalah variasi dari 4 operasi ini."},
+        {t:"Connection pooling (dasar)", u:"Kelola koneksi DB secara efisien. <b>Nyatanya:</b> cegah app tumbang saat ratusan user mengakses database bersamaan."}
+      ],
+      res:[{n:"SQLAlchemy 2.0 Docs",u:"https://docs.sqlalchemy.org/"},{n:"FastAPI + SQL Databases",u:"https://fastapi.tiangolo.com/tutorial/sql-databases/"}]},
+    {id:"auth", level:"wajib", time:"1 mgg", title:"Authentication & Security",
+      tag:"JWT, OAuth, hashing, OWASP dasar",
+      why:"Tiap aplikasi nyata butuh login & keamanan. Ini salah satu hal pertama yang ditanyakan di interview backend, dan kesalahan di sini bisa fatal.",
+      learn:[
+        {t:"Hashing password (bcrypt / argon2)", u:"Simpan password teracak, bukan asli. <b>Nyatanya:</b> kalau database bocor, password user tetap aman karena tak tersimpan dalam bentuk asli."},
+        {t:"JWT & session", u:"Tandai user yang sudah login. <b>Nyatanya:</b> user tak perlu login ulang tiap klik halaman — token membuktikan identitasnya."},
+        {t:"OAuth2 (login Google/GitHub)", u:"Login pakai akun pihak ketiga. <b>Nyatanya:</b> fitur 'Sign in with Google' yang ada hampir di semua aplikasi sekarang."},
+        {t:"Menyimpan secret (.env, env variables)", u:"Jauhkan API key/password dari kode. <b>Nyatanya:</b> jangan pernah ter-commit ke GitHub — ini sumber kebocoran data paling umum."},
+        {t:"OWASP Top 10 (SQL injection, XSS, dll)", u:"Sadar celah keamanan umum. <b>Nyatanya:</b> supaya app-mu tidak gampang diretas lewat lubang yang sebenarnya sudah dikenal luas."},
+        {t:"CORS", u:"Atur situs mana yang boleh akses API-mu. <b>Nyatanya:</b> sering jadi bug pertama saat menghubungkan frontend ke backend-mu."}
+      ],
+      res:[{n:"FastAPI — Security",u:"https://fastapi.tiangolo.com/tutorial/security/"},{n:"OWASP Top 10",u:"https://owasp.org/www-project-top-ten/"}]},
+    {id:"testing", level:"wajib", time:"1 mgg", title:"Testing (pytest)",
+      tag:"Unit & integration test, TDD dasar",
+      why:"Perusahaan profesional WAJIB menulis test. Punya test di portofolio = sinyal kuat kamu engineer serius, bukan sekadar hobiis yang asal jadi.",
+      learn:[
+        {t:"pytest (fixtures, assert)", u:"Tulis tes otomatis. <b>Nyatanya:</b> pastikan kode tetap benar tanpa mengecek manual berulang tiap kali ada perubahan."},
+        {t:"Unit test vs integration test", u:"Tes bagian kecil vs alur gabungan. <b>Nyatanya:</b> keduanya menjaga app waras — unit cek 1 fungsi, integration cek alur login lengkap."},
+        {t:"Testing endpoint API", u:"Pastikan tiap endpoint kembalikan hasil benar. <b>Nyatanya:</b> tangkap bug sebelum sampai ke user & sebelum di-deploy."},
+        {t:"Mocking (dasar)", u:"Tiru bagian luar (DB / API lain) saat tes. <b>Nyatanya:</b> tes berjalan cepat & tak butuh internet atau database asli."},
+        {t:"Konsep TDD", u:"Tulis tes dulu, baru kode. <b>Nyatanya:</b> gaya kerja yang dihargai di tim profesional & memaksa desain kode lebih bersih."},
+        {t:"Test coverage", u:"Ukur seberapa banyak kode tertes. <b>Nyatanya:</b> sinyal kualitas yang sering jadi syarat merge PR di perusahaan serius."}
+      ],
+      res:[{n:"Real Python — pytest",u:"https://realpython.com/pytest-python-testing/"},{n:"FastAPI — Testing",u:"https://fastapi.tiangolo.com/tutorial/testing/"}]},
+    {id:"async-cache", level:"saran", time:"4–6 hari", title:"Caching & Background Jobs",
+      tag:"Redis, queue, async tasks",
+      why:"Skill yang membedakan junior biasa dengan yang 'siap produksi'. Sering muncul di sistem nyata & interview menengah.",
+      learn:[
+        {t:"Redis caching", u:"Simpan hasil yang sering diminta di memori. <b>Nyatanya:</b> halaman beranda jadi kilat & database tak kewalahan karena tak query berulang."},
+        {t:"Background job / queue (Celery / RQ / arq)", u:"Kerjakan tugas berat di belakang layar. <b>Nyatanya:</b> kirim email atau proses gambar tanpa membuat user menunggu loading."},
+        {t:"Async / await di Python", u:"Tangani banyak request bersamaan. <b>Nyatanya:</b> keunggulan utama FastAPI — layani ribuan koneksi efisien, penting untuk app berskala."},
+        {t:"Rate limiting (dasar)", u:"Batasi jumlah request. <b>Nyatanya:</b> cegah penyalahgunaan & serangan yang membanjiri API-mu."}
+      ],
+      res:[{n:"Redis — Docs",u:"https://redis.io/docs/latest/"},{n:"Celery — Docs",u:"https://docs.celeryq.dev/"}]},
+    {id:"docker", level:"wajib", time:"1 mgg", title:"Docker & Containerization",
+      tag:"Image, container, docker-compose",
+      why:"Hampir SEMUA lowongan backend modern meminta Docker. Ini cara aplikasi dikemas & dijalankan konsisten di mana saja — laptop, server, cloud.",
+      learn:[
+        {t:"Konsep container vs VM", u:"Paham kenapa container ringan & cepat. <b>Nyatanya:</b> dasar memahami deployment modern & kenapa industri pindah ke sini."},
+        {t:"Dockerfile (build image)", u:"Resep untuk mengemas app-mu. <b>Nyatanya:</b> 'jalan di sini, jalan di mana saja' — tak ada lagi drama 'di laptopku jalan kok'."},
+        {t:"Menjalankan & mengelola container", u:"Operasikan app dalam container. <b>Nyatanya:</b> skill harian saat development & saat menjalankan app di produksi."},
+        {t:"docker-compose", u:"Jalankan app + DB + Redis sekaligus. <b>Nyatanya:</b> rekan baru tinggal 'docker compose up' & semua lingkungan dev langsung siap dalam 1 menit."},
+        {t:"Volume & networking (dasar)", u:"Simpan data permanen & hubungkan antar container. <b>Nyatanya:</b> data database tak hilang saat container restart."}
+      ],
+      res:[{n:"Docker — Get Started",u:"https://docs.docker.com/get-started/"},{n:"freeCodeCamp — Docker (YouTube)",u:"https://www.youtube.com/watch?v=fqMOX6JJhGo"}]},
+    {id:"deploy", level:"wajib", time:"1 mgg", title:"Deployment, Cloud & CI/CD (Dasar)",
+      tag:"Deploy app, GitHub Actions, cloud basics",
+      why:"Bisa men-deploy aplikasi ke internet = bukti nyata kamu bisa menghasilkan sesuatu yang dipakai orang. Wajib untuk portofolio yang meyakinkan.",
+      learn:[
+        {t:"Deploy ke Railway/Render lalu VPS", u:"Naikkan app ke internet. <b>Nyatanya:</b> bukti nyata kamu bisa mengirim produk — link hidup yang bisa diklik recruiter."},
+        {t:"Environment & config production", u:"Pisahkan setting dev vs produksi. <b>Nyatanya:</b> kelola database asli & secret dengan aman, beda dari saat ngoding di laptop."},
+        {t:"CI/CD dengan GitHub Actions", u:"Tes & deploy otomatis tiap push. <b>Nyatanya:</b> cara kerja tim modern; tampak sangat profesional di CV career switcher."},
+        {t:"Cloud dasar (AWS/GCP: compute, storage, DB)", u:"Paham layanan cloud inti. <b>Nyatanya:</b> hampir semua perusahaan jalan di cloud — paham konsepnya membuatmu siap kerja."},
+        {t:"Logging & monitoring (dasar)", u:"Pantau app di produksi. <b>Nyatanya:</b> tahu saat terjadi error & sebabnya sebelum user komplain ramai-ramai."},
+        {t:"HTTPS & domain", u:"Amankan app & beri alamat profesional. <b>Nyatanya:</b> standar wajib app produksi — tanpa HTTPS, browser menandainya 'tidak aman'."}
+      ],
+      res:[{n:"Railway",u:"https://docs.railway.app/"},{n:"GitHub Actions — Docs",u:"https://docs.github.com/en/actions"},{n:"AWS — Getting Started",u:"https://aws.amazon.com/getting-started/"}]}
+  ]
+},
+{
+  id:"f3", num:"FASE 3", color:"#0ea5e9",
+  title:"Bangun Portofolio & Proyek Nyata",
+  sub:"INI yang membuatmu dapat kerja, bukan sertifikat. Kerjakan paralel dengan Fase 2. Kualitas > kuantitas: 3 proyek bagus & ter-deploy mengalahkan 10 tutorial.",
+  time:"≈ 6–8 minggu (paralel)",
+  topics:[
+    {id:"proj-api", level:"wajib", time:"1–2 mgg", title:"Proyek 1 — REST API dengan Auth",
+      tag:"Mis. Task Manager / Blog API",
+      why:"Membuktikan kamu menguasai inti backend: CRUD, database, autentikasi, dokumentasi. Proyek 'wajib punya' pertama di portofoliomu.",
+      learn:[
+        {t:"CRUD lengkap + relasi database", u:"Bukti kamu kuasai inti backend. <b>Nyatanya:</b> operasi data persis seperti yang ada di tiap aplikasi nyata."},
+        {t:"Autentikasi (JWT) & otorisasi", u:"Tunjukkan kamu bisa amankan app. <b>Nyatanya:</b> user hanya bisa mengedit datanya sendiri, bukan milik orang lain."},
+        {t:"Validasi input & error handling rapi", u:"Tanda kode 'siap produksi'. <b>Nyatanya:</b> membedakan proyek serius dari sekadar demo asal jalan."},
+        {t:"Dokumentasi API (Swagger)", u:"Memudahkan orang lain mencoba API-mu. <b>Nyatanya:</b> reviewer bisa langsung uji endpoint-mu tanpa baca seluruh kode."},
+        {t:"README yang jelas + cara menjalankan", u:"Hal pertama yang dibaca recruiter. <b>Nyatanya:</b> proyek bagus tanpa README sering dilewati begitu saja."}
+      ],
+      res:[{n:"Ide proyek backend",u:"https://roadmap.sh/backend/projects"}]},
+    {id:"proj-full", level:"wajib", time:"2–3 mgg", title:"Proyek 2 — Aplikasi Lengkap & Ter-deploy",
+      tag:"Produk nyata + database + online",
+      why:"Aplikasi yang bisa diakses lewat URL menunjukkan kemampuan end-to-end: dari ide → kode → deploy. Inilah yang paling memukau recruiter.",
+      learn:[
+        {t:"Fitur yang menyelesaikan masalah nyata", u:"Proyek relevan lebih berkesan. <b>Nyatanya:</b> app yang menyelesaikan masalah asli jauh lebih menjual daripada to-do list generik."},
+        {t:"Database + Docker", u:"Tunjukkan stack lengkap & praktik modern. <b>Nyatanya:</b> bukti kamu paham cara aplikasi nyata dirakit, bukan cuma skrip kecil."},
+        {t:"Ter-deploy & bisa diakses publik", u:"Link hidup = bukti instan. <b>Nyatanya:</b> recruiter bisa klik & langsung mencoba karyamu dalam hitungan detik."},
+        {t:"Test + CI/CD", u:"Pembeda kandidat serius. <b>Nyatanya:</b> menunjukkan disiplin engineering yang dicari perusahaan, bukan asal kelar."},
+        {t:"Demo (screenshot / video)", u:"Bikin proyek mudah 'dijual'. <b>Nyatanya:</b> recruiter sibuk paham nilai proyekmu dalam 30 detik tanpa harus menjalankannya."}
+      ],
+      res:[{n:"Contoh: bangun + deploy (FastAPI)",u:"https://fastapi.tiangolo.com/deployment/"}]},
+    {id:"proj-ai", level:"wajib", time:"1–2 mgg", title:"Proyek 3 — Fitur AI (Jembatan ke Spesialisasi)",
+      tag:"Integrasi LLM API: chatbot / RAG sederhana",
+      why:"Menggabungkan backend + AI adalah skill yang SANGAT dicari sekarang (2026). Ini pembeda CV-mu sekaligus mulai mengarahkanmu ke jalur AI yang jadi tujuan akhirmu.",
+      learn:[
+        {t:"Memanggil LLM API (Claude / OpenAI)", u:"Skill paling dicari 2026. <b>Nyatanya:</b> fondasi tiap fitur AI di produk modern — chatbot, ringkasan, asisten."},
+        {t:"Chatbot / Q&A atas dokumen (RAG sederhana)", u:"Use-case AI paling umum di industri. <b>Nyatanya:</b> 'tanya-jawab atas dokumen perusahaan' adalah produk AI yang paling banyak dibangun saat ini."},
+        {t:"Embeddings & vector search (dasar)", u:"Cara AI 'mencari berdasarkan makna'. <b>Nyatanya:</b> inti sistem RAG — temukan info relevan walau kata-katanya berbeda."},
+        {t:"Prompt engineering praktis", u:"Arahkan AI beri hasil andal. <b>Nyatanya:</b> skill lintas semua produk AI — output bagus vs ngawur tergantung ini."},
+        {t:"Membungkusnya jadi API backend", u:"Gabungkan backend + AI. <b>Nyatanya:</b> kombinasi inilah yang membuat CV-mu menonjol & jadi jembatan resmi ke jalur AI."}
+      ],
+      res:[{n:"Anthropic — Docs (Claude API)",u:"https://docs.anthropic.com/"},{n:"OpenAI — Docs",u:"https://platform.openai.com/docs"}]},
+    {id:"github-profile", level:"wajib", time:"berkelanjutan", title:"GitHub Profile yang Rapi",
+      tag:"README, pinned repos, commit konsisten",
+      why:"Bagi career switcher tanpa gelar CS, GitHub adalah 'ijazah' kamu. Recruiter Singapura hampir pasti mengeceknya sebelum memanggil.",
+      learn:[
+        {t:"README profil yang menarik", u:"Etalase pertamamu. <b>Nyatanya:</b> 'ijazah' bagi career switcher tanpa gelar CS — kesan pertama yang menentukan."},
+        {t:"Pin 3–4 proyek terbaik", u:"Arahkan mata recruiter. <b>Nyatanya:</b> tunjukkan karya terbaikmu lebih dulu, bukan repo latihan yang acak."},
+        {t:"README tiap repo (deskripsi, screenshot, cara jalan, stack)", u:"Tunjukkan kamu bisa komunikasi teknis. <b>Nyatanya:</b> kemampuan menjelaskan dinilai setara dengan kemampuan koding."},
+        {t:"Commit history yang konsisten", u:"Grafik aktivitas yang hidup. <b>Nyatanya:</b> sinyal kamu serius, rajin, & konsisten belajar — meyakinkan untuk career switcher."},
+        {t:"Arsip/hapus repo tutorial berantakan", u:"Kesan rapi & terkurasi. <b>Nyatanya:</b> sedikit tapi berkualitas > banyak tapi acak dan setengah jadi."}
+      ],
+      res:[{n:"Cara bikin profil GitHub keren",u:"https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile"}]},
+    {id:"opensource", level:"opsi", time:"berkelanjutan", title:"Kontribusi Open Source",
+      tag:"Nilai tambah (bukan keharusan)",
+      why:"Bukti kamu bisa bekerja di codebase besar bersama orang lain — sangat dihargai. Tapi jangan menunda lamaran hanya demi ini.",
+      learn:[
+        {t:"Cari 'good first issue'", u:"Titik masuk ramah pemula. <b>Nyatanya:</b> kontribusi nyata ke proyek beneran tanpa harus langsung paham seluruh codebase."},
+        {t:"Fork → branch → PR", u:"Alur kontribusi standar. <b>Nyatanya:</b> persis sama dengan alur kerja harian di dalam tim perusahaan."},
+        {t:"Mengikuti aturan kontribusi proyek", u:"Disiplin pada standar codebase besar. <b>Nyatanya:</b> latihan mengikuti aturan tim, bukan main sendiri."},
+        {t:"Komunikasi sopan & jelas di PR/issue", u:"Bukti kamu bisa kolaborasi. <b>Nyatanya:</b> kemampuan ini yang dinilai maintainer (& recruiter) dari kontribusimu."}
+      ],
+      res:[{n:"Good First Issues",u:"https://goodfirstissue.dev/"},{n:"First Contributions",u:"https://github.com/firstcontributions/first-contributions"}]}
+  ]
+},
+{
+  id:"f4", num:"FASE 4", color:"#8b5cf6",
+  title:"Siap Interview & Siap Kerja",
+  sub:"Skill teknis saja tidak cukup — kamu harus lolos proses seleksi. Kerjakan paralel mulai ~bulan ke-4. Untuk perusahaan top Singapura, tahap ini sangat menentukan.",
+  time:"≈ 6–8 minggu (paralel)",
+  topics:[
+    {id:"leetcode", level:"wajib", time:"berkelanjutan", title:"DSA untuk Interview (LeetCode)",
+      tag:"Pola soal, NeetCode 150 / Blind 75",
+      why:"Perusahaan besar (Google, Meta, TikTok, Shopee, Grab) menyeleksi lewat coding interview. Latihan terstruktur = wajib, dan ini gerbang utama menuju gaji tinggi yang memenuhi syarat EP.",
+      learn:[
+        {t:"Kuasai pola, bukan hafal soal", u:"Ratusan soal sebenarnya variasi ~15 pola. <b>Nyatanya:</b> kuasai polanya, kamu bisa menyelesaikan soal yang belum pernah dilihat."},
+        {t:"Arrays & hashing, two pointers, sliding window", u:"Pola paling sering keluar. <b>Nyatanya:</b> fondasi mayoritas soal level mudah-menengah di screening awal."},
+        {t:"Stack, binary search, linked list", u:"Pola inti wajib lancar. <b>Nyatanya:</b> kerap muncul di tahap screening — gagal di sini berarti gugur lebih awal."},
+        {t:"Trees, graphs, backtracking", u:"Soal level menengah. <b>Nyatanya:</b> sering jadi penentu di interview perusahaan besar/MNC Singapura."},
+        {t:"Dynamic programming (dasar)", u:"Topik tersulit. <b>Nyatanya:</b> cukup paham dasarnya untuk perusahaan top — jangan sampai blank total saat ditanya."},
+        {t:"~150 soal (NeetCode 150 / Blind 75)", u:"Set kurasi paling efisien. <b>Nyatanya:</b> cakupan luas tanpa membuang waktu mengerjakan ribuan soal acak."},
+        {t:"Ngomong sambil koding (mock interview)", u:"Interview menilai cara berpikir. <b>Nyatanya:</b> latih menjelaskan logika sambil mengetik — pewawancara ingin dengar alasanmu, bukan cuma lihat jawaban."}
+      ],
+      res:[{n:"NeetCode 150",u:"https://neetcode.io/practice"},{n:"LeetCode",u:"https://leetcode.com/"},{n:"Blind 75",u:"https://www.teamblind.com/post/New-Year-Gift---Curated-List-of-Top-75-LeetCode-Questions-to-Save-Your-Time-OaM1orEU"}]},
+    {id:"system-design", level:"saran", time:"1–2 mgg", title:"System Design (Dasar)",
+      tag:"Skalabilitas, load balancer, caching, DB scaling",
+      why:"Untuk role di atas entry-level (yang sering jadi syarat gaji EP Singapura), kamu perlu bisa diskusi arsitektur sistem, bukan cuma menulis fungsi.",
+      learn:[
+        {t:"Scalability: vertical vs horizontal", u:"Cara app melayani lebih banyak user. <b>Nyatanya:</b> pertanyaan pembuka hampir setiap interview system design."},
+        {t:"Load balancing", u:"Bagi beban ke banyak server. <b>Nyatanya:</b> menjaga app tetap nyala & responsif saat trafik melonjak (mis. flash sale)."},
+        {t:"Caching (CDN, Redis)", u:"Percepat & ringankan beban. <b>Nyatanya:</b> solusi yang paling sering kamu sebut untuk membuat sistem lebih cepat di interview."},
+        {t:"Database scaling (replication, sharding)", u:"Tangani data & trafik besar. <b>Nyatanya:</b> topik wajib untuk role menengah — bagaimana DB tetap kuat saat data meledak."},
+        {t:"Message queue", u:"Hubungkan komponen secara andal. <b>Nyatanya:</b> proses order tetap jalan & tak hilang walau ada lonjakan mendadak."},
+        {t:"Mendesain sistem sederhana (URL shortener, dll)", u:"Latih merangkai semua konsep. <b>Nyatanya:</b> format soal interview yang sangat umum — 'desain sistem X di papan tulis'."}
+      ],
+      res:[{n:"System Design Primer (GitHub)",u:"https://github.com/donnemartin/system-design-primer"},{n:"ByteByteGo",u:"https://bytebytego.com/"}]},
+    {id:"resume", level:"wajib", time:"3–5 hari", title:"CV / Resume yang Lolos ATS",
+      tag:"Ringkas, terukur, ramah ATS",
+      why:"CV buruk = ditolak sebelum dibaca manusia. Untuk career switcher, narasi & bukti proyek harus kuat untuk menutup ketiadaan gelar/pengalaman formal.",
+      learn:[
+        {t:"1 halaman, ATS-friendly", u:"Robot penyaring & recruiter cuma scan sekilas. <b>Nyatanya:</b> desain ribet/dua kolom justru bikin CV gagal terbaca mesin & ditolak otomatis."},
+        {t:"Tonjolkan proyek + dampak terukur", u:"Angka berbicara. <b>Nyatanya:</b> 'membangun API yang melayani 1k request' jauh lebih kuat daripada sekadar daftar skill."},
+        {t:"Sorot transferable skills dari karier lama", u:"Ubah masa lalu jadi nilai jual. <b>Nyatanya:</b> komunikasi, problem solving, & pengetahuan domain lamamu adalah keunggulan, bukan beban."},
+        {t:"Sesuaikan keyword dengan job description", u:"Lolos filter ATS. <b>Nyatanya:</b> cocokkan istilah CV dengan lowongan supaya tidak tersaring sebelum sampai ke recruiter."},
+        {t:"Sertakan link GitHub & portofolio", u:"Beri bukti, bukan klaim. <b>Nyatanya:</b> recruiter bisa langsung memverifikasi kemampuanmu — pembeda besar untuk career switcher."}
+      ],
+      res:[{n:"Tech Resume — panduan",u:"https://www.techinterviewhandbook.org/resume/"}]},
+    {id:"behavioral", level:"wajib", time:"3–5 hari", title:"Interview Perilaku & Narasi Career Switch",
+      tag:"Metode STAR, cerita 'kenapa pindah'",
+      why:"Mereka ingin tahu cara kamu berpikir & bekerja sama. Sebagai career switcher, cerita yang meyakinkan tentang transisimu adalah senjata terbesarmu.",
+      learn:[
+        {t:"Metode STAR (Situation, Task, Action, Result)", u:"Jawab terstruktur. <b>Nyatanya:</b> bikin ceritamu jelas, runtut, & berkesan — bukan jawaban melantur tanpa arah."},
+        {t:"Narasi 'kenapa pindah & kenapa serius'", u:"Wajib bagi career switcher. <b>Nyatanya:</b> ubah keraguan pewawancara ('kenapa banting setir?') jadi kekuatan & komitmen yang meyakinkan."},
+        {t:"Cerita kerja sama, konflik, kegagalan & belajar", u:"Menilai kedewasaan & cara belajar. <b>Nyatanya:</b> mereka tak cari yang sempurna, tapi yang bisa belajar dari kesalahan."},
+        {t:"Pertanyaan untuk pewawancara", u:"Tunjukkan minat tulus. <b>Nyatanya:</b> pertanyaan cerdas di akhir sering menentukan, & menunjukkan kamu menilai mereka juga."},
+        {t:"Komunikasi jelas dalam bahasa Inggris", u:"Krusial untuk perusahaan internasional. <b>Nyatanya:</b> di Singapura, interview & kerja sehari-hari berbahasa Inggris."}
+      ],
+      res:[{n:"Behavioral Interview Guide",u:"https://www.techinterviewhandbook.org/behavioral-interview/"}]},
+    {id:"presence", level:"saran", time:"2–3 hari", title:"LinkedIn & Personal Branding",
+      tag:"Profil, networking, portfolio site",
+      why:"Banyak peluang (terutama untuk visa sponsor) datang lewat referral & recruiter di LinkedIn, bukan lewat portal lamaran biasa.",
+      learn:[
+        {t:"Profil lengkap + kata kunci 'Software Engineer'", u:"Recruiter SG mencari kandidat di sini. <b>Nyatanya:</b> kata kunci tepat = kamu muncul saat recruiter Singapura mencari talenta."},
+        {t:"Headline & About yang kuat", u:"Ringkasan 5 detik. <b>Nyatanya:</b> menentukan recruiter lanjut membaca profilmu atau langsung scroll lewat."},
+        {t:"Posting progress belajar/proyek", u:"Bangun kredibilitas & jaringan. <b>Nyatanya:</b> peluang sering datang dari orang yang kebetulan melihat postinganmu."},
+        {t:"Connect dengan recruiter & engineer di SG", u:"Jalur referral. <b>Nyatanya:</b> cara paling efektif menembus perusahaan yang sponsor visa — koneksi membuka pintu yang tertutup."},
+        {t:"Portfolio website sederhana", u:"Satu tautan yang merangkum semua. <b>Nyatanya:</b> kesan profesional & memudahkan recruiter melihat seluruh karyamu di satu tempat."}
+      ],
+      res:[{n:"LinkedIn untuk developer",u:"https://www.freecodecamp.org/news/how-to-optimize-your-linkedin-profile/"}]}
+  ]
+},
+{
+  id:"f5", num:"FASE 5", color:"#ef4444",
+  title:"Strategi Kerja di Singapura + Visa Sponsor 🇸🇬",
+  sub:"Bagian paling penting dari targetmu — dan paling sering disepelekan. Pahami aturan mainnya supaya usahamu tidak sia-sia.",
+  time:"Riset + aksi (berkelanjutan)",
+  topics:[
+    {id:"sg-visa", level:"wajib", time:"riset", title:"Pahami Visa Kerja Singapura (EP & COMPASS)",
+      tag:"Employment Pass, syarat gaji, sistem poin",
+      why:"Kamu harus tahu syarat sebenarnya supaya bisa menargetkan gaji & role yang membuatmu memenuhi syarat visa. Ini menentukan seberapa tinggi kamu harus 'menembak'.",
+      learn:[
+        {t:"Employment Pass (EP)", u:"Visa utama profesional asing. <b>Nyatanya:</b> inilah yang akan kamu kejar — pahami syaratnya sejak awal agar tidak salah arah."},
+        {t:"Syarat gaji minimum EP", u:"Menentukan level role yang harus diincar. <b>Nyatanya:</b> cek angka terbaru di situs MOM (naik tiap tahun, sektor tech lebih tinggi) — gajimu harus melewati ambang ini."},
+        {t:"COMPASS (sistem poin)", u:"Kelayakan dinilai dari gaji + kualifikasi + keberagaman tim. <b>Nyatanya:</b> tahu cara poin dihitung = bisa merancang strategi untuk lolos."},
+        {t:"Tech.Pass", u:"Jalur untuk talenta tech senior. <b>Nyatanya:</b> target jangka panjang setelah kamu berpengalaman & bergaji tinggi."},
+        {t:"Realita gelar vs skill", u:"Tanpa gelar, beban ada di skill & gaji. <b>Nyatanya:</b> skill + pengalaman + gaji harus lebih kuat untuk menutup poin dari gelar yang tidak kamu miliki."},
+        {t:"Pajak & biaya hidup Singapura", u:"Untuk negosiasi gaji realistis. <b>Nyatanya:</b> pahami agar tawaran gajimu masuk akal sekaligus memenuhi ambang EP."}
+      ],
+      res:[{n:"MOM — Employment Pass",u:"https://www.mom.gov.sg/passes-and-permits/employment-pass"},{n:"MOM — COMPASS",u:"https://www.mom.gov.sg/passes-and-permits/employment-pass/eligibility"},{n:"MOM — Tech.Pass",u:"https://www.mom.gov.sg/passes-and-permits/tech-pass"}]},
+    {id:"sg-companies", level:"wajib", time:"riset", title:"Targetkan Perusahaan yang Sponsor Visa",
+      tag:"MNC & startup besar dengan kantor di SG",
+      why:"Perusahaan kecil jarang mau repot sponsor visa. Fokuskan energi ke yang memang terbukti sering merekrut talenta asing.",
+      learn:[
+        {t:"Tech besar (Google, Meta, TikTok, Stripe)", u:"Proses sponsor visa sudah mapan. <b>Nyatanya:</b> target utama — mereka biasa & mampu mengurus EP untuk talenta yang tepat."},
+        {t:"Unicorn regional (Sea/Shopee, Grab, Lazada)", u:"Banyak posisi engineer. <b>Nyatanya:</b> terbiasa merekrut talenta asing & punya hub engineering besar di Singapura."},
+        {t:"Bank & fintech (DBS, GovTech, Wise, Revolut)", u:"Sektor besar & lapar engineer. <b>Nyatanya:</b> kebutuhan teknologi tinggi di SG, sering buka untuk kandidat berkualitas."},
+        {t:"Cari yang punya engineering hub di SG", u:"Fokus yang tepat. <b>Nyatanya:</b> incar perusahaan yang benar-benar menempatkan engineer di Singapura, bukan cuma kantor penjualan."},
+        {t:"Incar role yang gajinya penuhi ambang EP", u:"Skill harus selevel gaji. <b>Nyatanya:</b> arahkan kemampuanmu ke level yang membuat gaji tawaran lolos syarat visa."},
+        {t:"Bangun jaringan/referral", u:"Jalur masuk paling efektif. <b>Nyatanya:</b> kenalan internal jauh lebih ampuh daripada melamar online di tumpukan ribuan pelamar."}
+      ],
+      res:[{n:"MyCareersFuture (portal kerja SG)",u:"https://www.mycareersfuture.gov.sg/"},{n:"LinkedIn Jobs — filter Singapore",u:"https://www.linkedin.com/jobs/"}]},
+    {id:"sg-strategy", level:"wajib", time:"strategi", title:"Strategi Realistis Menuju Singapura",
+      tag:"Jalur bertahap yang masuk akal",
+      why:"Langsung lompat ke Singapura tanpa pengalaman itu sulit. Strategi bertahap punya peluang berhasil jauh lebih besar — ini soal sabar & cerdas, bukan nekat.",
+      learn:[
+        {t:"Jalur A: pengalaman dulu (lokal/remote 1–2 thn)", u:"Bangun fondasi profil. <b>Nyatanya:</b> 1–2 tahun pengalaman bikin profilmu jauh lebih kuat & lebih mudah memenuhi syarat EP."},
+        {t:"Jalur B: relokasi internal", u:"Masuk perusahaan global berkantor SG. <b>Nyatanya:</b> kerja dulu di kantor negaramu, lalu minta pindah ke kantor SG dari dalam — sering lebih mudah."},
+        {t:"Jalur C: studi di SG (opsional)", u:"Kuliah/master/bootcamp di SG. <b>Nyatanya:</b> membuka jalur kerja lokal yang lebih mulus — jika memungkinkan secara biaya."},
+        {t:"Spesialisasi AI sebagai daya tawar", u:"Skill langka = posisi tawar kuat. <b>Nyatanya:</b> perusahaan lebih rela mengurus sponsor visa untuk keahlian yang sulit dicari."},
+        {t:"Networking > lamar massal", u:"Cara terbanyak posisi terisi. <b>Nyatanya:</b> banyak peran visa terisi lewat referral/recruiter sebelum lowongan ramai dilamar."},
+        {t:"Dana darurat & rencana relokasi", u:"Siapkan finansial. <b>Nyatanya:</b> pindah ke SG butuh modal awal (deposit sewa, biaya hidup mahal) sebelum gaji pertama cair."}
+      ],
+      res:[{n:"Tech Interview Handbook",u:"https://www.techinterviewhandbook.org/"}]},
+    {id:"sg-soft", level:"wajib", time:"berkelanjutan", title:"Bahasa Inggris & Soft Skill Profesional",
+      tag:"Komunikasi tim internasional",
+      why:"Lingkungan kerja Singapura sangat internasional & berbahasa Inggris. Komunikasi yang baik sering jadi pembeda saat kemampuan teknismu setara dengan kandidat lain.",
+      learn:[
+        {t:"Bahasa Inggris teknis (lisan & tulisan)", u:"Bahasa kerja di SG. <b>Nyatanya:</b> menentukan saat kamu bersaing dengan kandidat dari seluruh dunia untuk satu kursi."},
+        {t:"Komunikasi async (Slack, dokumentasi, PR)", u:"Cara tim modern bekerja. <b>Nyatanya:</b> tulisan yang jelas = tim produktif tanpa harus meeting terus-menerus."},
+        {t:"Kerja sama lintas budaya", u:"Tim SG sangat beragam. <b>Nyatanya:</b> kemampuan beradaptasi dengan rekan dari banyak negara jadi nilai plus nyata."},
+        {t:"Profesionalisme & inisiatif", u:"Yang bikin kamu dipercaya. <b>Nyatanya:</b> menentukan kamu dipromosikan & dipertahankan, bukan sekadar diterima lalu stagnan."},
+        {t:"Negosiasi gaji & offer", u:"Berharga ganda. <b>Nyatanya:</b> gaji lebih tinggi bukan hanya soal uang — juga menaikkan poin COMPASS-mu untuk visa."}
+      ],
+      res:[{n:"Tech English & communication",u:"https://www.freecodecamp.org/news/"}]}
+  ]
+},
+{
+  id:"f6", num:"FASE 6", color:"#111827",
+  title:"Spesialisasi: Menjadi AI / ML Engineer 🤖",
+  sub:"Tujuan akhirmu. Mulai SETELAH kamu sudah employable sebagai engineer (punya gaji & pengalaman). Dengan fondasi Python + backend, transisi ke AI jauh lebih mulus.",
+  time:"≈ 6–12 bulan (lanjutan)",
+  topics:[
+    {id:"ai-math", level:"saran", time:"berkelanjutan", title:"Matematika untuk Machine Learning",
+      tag:"Aljabar linear, probabilitas, statistik",
+      why:"Tidak perlu jadi ahli matematika, tapi paham intuisinya membuatmu mengerti 'kenapa' model bekerja — bukan sekadar memanggil library secara buta.",
+      learn:[
+        {t:"Aljabar linear (vektor, matriks)", u:"Bahasa data di ML. <b>Nyatanya:</b> gambar, teks, & suara semua diubah jadi angka dalam matriks sebelum diproses model."},
+        {t:"Probabilitas & statistik dasar", u:"Dasar cara model 'memutuskan'. <b>Nyatanya:</b> model memprediksi dengan probabilitas — paham ini bikin kamu mengerti outputnya."},
+        {t:"Kalkulus (turunan & gradient, intuisi)", u:"Inti cara model belajar. <b>Nyatanya:</b> gradient descent — proses model memperbaiki diri; cukup paham intuisinya, tak perlu hitung manual."},
+        {t:"Statistik untuk evaluasi model", u:"Menilai model dengan jujur. <b>Nyatanya:</b> tahu apakah modelmu benar-benar bagus atau cuma kebetulan beruntung di data tertentu."}
+      ],
+      res:[{n:"3Blue1Brown — Essence of Linear Algebra",u:"https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab"},{n:"Khan Academy — Statistics",u:"https://www.khanacademy.org/math/statistics-probability"}]},
+    {id:"ai-data", level:"wajib", time:"3–4 mgg", title:"Data Handling: NumPy, Pandas, Visualisasi",
+      tag:"Manipulasi & pembersihan data",
+      why:"80% pekerjaan ML adalah mengolah data, bukan melatih model. Ini fondasi praktis yang harus lancar sebelum menyentuh model apa pun.",
+      learn:[
+        {t:"NumPy (array & operasi numerik)", u:"Operasi angka super cepat. <b>Nyatanya:</b> fondasi di bawah hampir semua library ML, termasuk Pandas & PyTorch."},
+        {t:"Pandas (DataFrame, cleaning, manipulasi)", u:"Alat utama olah data tabel. <b>Nyatanya:</b> pekerjaan sehari-hari ML engineer — bersihkan & rapikan data berantakan jadi siap pakai."},
+        {t:"Visualisasi (Matplotlib / Seaborn)", u:"Lihat pola di data. <b>Nyatanya:</b> grafik mengungkap tren & anomali yang tak terlihat dari angka mentah."},
+        {t:"Exploratory Data Analysis (EDA)", u:"Pahami datamu dulu. <b>Nyatanya:</b> model bagus selalu berawal dari data yang benar-benar dimengerti, bukan asal masuk."},
+        {t:"Mengambil & menggabungkan data", u:"Satukan banyak sumber. <b>Nyatanya:</b> data nyata tersebar di banyak tabel/file — gabungkan dulu jadi satu set siap latih."}
+      ],
+      res:[{n:"Kaggle — Pandas (gratis)",u:"https://www.kaggle.com/learn/pandas"},{n:"NumPy — Docs",u:"https://numpy.org/doc/stable/"}]},
+    {id:"ai-ml", level:"wajib", time:"2–3 bln", title:"Machine Learning",
+      tag:"scikit-learn, supervised/unsupervised",
+      why:"Inti menjadi ML engineer: memahami & melatih model untuk membuat prediksi/keputusan dari data.",
+      learn:[
+        {t:"Supervised vs unsupervised learning", u:"Dua jenis ML utama. <b>Nyatanya:</b> paham kapan pakai data berlabel (prediksi harga) vs tanpa label (kelompokkan pelanggan)."},
+        {t:"Regresi & klasifikasi", u:"Kasus paling umum. <b>Nyatanya:</b> prediksi angka (harga rumah) vs kategori (email spam / bukan)."},
+        {t:"Train/test split, overfitting, cross-validation", u:"Pastikan model andal. <b>Nyatanya:</b> jamin model bekerja di data baru, bukan cuma menghafal data latihan lalu gagal di dunia nyata."},
+        {t:"Evaluasi (accuracy, precision/recall, F1, ROC)", u:"Ukur dengan metrik tepat. <b>Nyatanya:</b> untuk deteksi penipuan, 'recall' lebih penting dari 'accuracy' — pilih metrik sesuai konteks bisnis."},
+        {t:"Feature engineering", u:"Olah data jadi sinyal berguna. <b>Nyatanya:</b> sering lebih menentukan hasil daripada algoritma yang dipakai — 'data bagus > model canggih'."},
+        {t:"scikit-learn", u:"Library ML standar untuk memulai. <b>Nyatanya:</b> cepat, lengkap, & jadi titik awal mayoritas proyek ML klasik."}
+      ],
+      res:[{n:"Andrew Ng — ML Specialization (Coursera)",u:"https://www.coursera.org/specializations/machine-learning-introduction"},{n:"Kaggle — Intro to ML",u:"https://www.kaggle.com/learn/intro-to-machine-learning"},{n:"scikit-learn",u:"https://scikit-learn.org/stable/"}]},
+    {id:"ai-dl", level:"wajib", time:"2–3 bln", title:"Deep Learning",
+      tag:"Neural networks, PyTorch, Transformers",
+      why:"Pondasi di balik AI modern (LLM, computer vision, dll). Wajib untuk role AI yang serius & bergaji tinggi.",
+      learn:[
+        {t:"Neural network (neuron, layer, activation)", u:"Blok dasar AI modern. <b>Nyatanya:</b> memahami strukturnya = fondasi untuk semua model canggih di atasnya."},
+        {t:"Backpropagation & gradient descent", u:"Cara jaringan belajar dari kesalahan. <b>Nyatanya:</b> inti deep learning — bagaimana model memperbaiki diri tiap iterasi latihan."},
+        {t:"PyTorch", u:"Framework industri. <b>Nyatanya:</b> alat utama membangun & melatih model di riset & perusahaan — wajib dikuasai untuk role AI."},
+        {t:"CNN (gambar) & RNN (urutan)", u:"Arsitektur untuk jenis data berbeda. <b>Nyatanya:</b> CNN untuk computer vision (deteksi objek), RNN untuk data berurutan (teks/waktu)."},
+        {t:"Arsitektur Transformer", u:"Mesin di balik LLM modern. <b>Nyatanya:</b> dasar ChatGPT, Claude, & semua AI generatif — wajib dipahami untuk jalur LLM."},
+        {t:"Training, fine-tuning, evaluasi", u:"Siklus hidup model. <b>Nyatanya:</b> latih dari awal atau sesuaikan model siap-pakai untuk tugas spesifikmu."}
+      ],
+      res:[{n:"Andrew Ng — Deep Learning Specialization",u:"https://www.coursera.org/specializations/deep-learning"},{n:"Karpathy — Neural Networks: Zero to Hero",u:"https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ"},{n:"PyTorch — Tutorials",u:"https://pytorch.org/tutorials/"}]},
+    {id:"ai-llm", level:"wajib", time:"1–2 bln", title:"LLM & Generative AI (Paling Diminati 2026)",
+      tag:"Prompt, RAG, embeddings, fine-tuning",
+      why:"Area dengan permintaan & gaji tertinggi sekarang. Karena kamu sudah punya skill backend, kamu bisa jadi 'AI Engineer' yang membangun produk AI nyata — kombinasi yang sangat langka & dihargai tinggi.",
+      learn:[
+        {t:"Cara kerja LLM (token, context, embeddings)", u:"Pahami 'mesin'-nya. <b>Nyatanya:</b> tahu cara kerjanya bikin kamu bisa memakai & men-debug-nya dengan benar, bukan asal coba-coba."},
+        {t:"Prompt engineering tingkat lanjut", u:"Kendalikan output AI. <b>Nyatanya:</b> skill inti tiap produk berbasis LLM — output andal vs ngawur sangat bergantung di sini."},
+        {t:"RAG & vector database", u:"Beri AI pengetahuan dari datamu. <b>Nyatanya:</b> arsitektur AI paling dicari saat ini — chatbot yang menjawab dari dokumen internal perusahaan."},
+        {t:"Fine-tuning & evaluasi LLM", u:"Sesuaikan & ukur model. <b>Nyatanya:</b> bikin model spesifik untuk kebutuhan perusahaan & buktikan kualitasnya secara terukur."},
+        {t:"Framework (LangChain / LlamaIndex)", u:"Rangkai komponen AI jadi aplikasi. <b>Nyatanya:</b> percepat pembangunan produk AI utuh tanpa merakit semua dari nol."},
+        {t:"Agent & tool use", u:"AI yang bisa bertindak. <b>Nyatanya:</b> AI yang memanggil API & menjalankan tugas otomatis — frontier produk AI di 2026."},
+        {t:"Membangun & men-deploy produk AI", u:"Satukan semuanya. <b>Nyatanya:</b> gabungan backend + AI inilah yang menjadikanmu 'AI Engineer' bergaji tinggi yang dicari perusahaan."}
+      ],
+      res:[{n:"Anthropic — Build with Claude",u:"https://docs.anthropic.com/en/docs/build-with-claude/overview"},{n:"Hugging Face — LLM Course",u:"https://huggingface.co/learn"},{n:"LangChain — Docs",u:"https://python.langchain.com/"}]},
+    {id:"ai-mlops", level:"saran", time:"1–2 bln", title:"MLOps & Deployment Model",
+      tag:"Serving, monitoring, ML pipeline",
+      why:"Membuat model bukan akhir — menjalankannya di produksi yang membuat perusahaan membayar. Di sinilah skill backend-mu jadi keunggulan besar dibanding ML engineer lain.",
+      learn:[
+        {t:"Model serving (FastAPI + model)", u:"Sajikan model lewat API. <b>Nyatanya:</b> di sinilah skill backend-mu jadi senjata — orang lain bisa pakai modelmu lewat endpoint."},
+        {t:"Containerize model (Docker)", u:"Kemas model agar konsisten. <b>Nyatanya:</b> model jalan sama persis di laptop & di server produksi tanpa drama dependency."},
+        {t:"ML pipeline & experiment tracking (MLflow)", u:"Kelola eksperimen & versi model. <b>Nyatanya:</b> catat tiap percobaan & tahu versi model mana yang terbaik — wajib saat proyek membesar."},
+        {t:"Monitoring & drift detection", u:"Pantau model di produksi. <b>Nyatanya:</b> performa AI bisa menurun seiring waktu saat pola data berubah — deteksi sebelum merugikan."},
+        {t:"Cloud ML (SageMaker / Vertex AI, dasar)", u:"Platform skala besar. <b>Nyatanya:</b> latih & deploy model besar di cloud — yang dipakai perusahaan sungguhan."}
+      ],
+      res:[{n:"Made With ML (MLOps)",u:"https://madewithml.com/"},{n:"MLflow — Docs",u:"https://mlflow.org/docs/latest/index.html"}]},
+    {id:"ai-portfolio", level:"wajib", time:"berkelanjutan", title:"Portofolio AI & Terus Berkembang",
+      tag:"Bangun produk AI, ikuti perkembangan",
+      why:"Bidang AI bergerak sangat cepat. Portofolio produk AI nyata + kebiasaan belajar berkelanjutan adalah kunci karier jangka panjang yang relevan.",
+      learn:[
+        {t:"Bangun 2–3 produk AI end-to-end", u:"Bukti nyata kemampuan. <b>Nyatanya:</b> inilah yang membuat perusahaan AI tertarik — produk jadi, bukan sekadar notebook latihan."},
+        {t:"Tulis & dokumentasikan (blog/LinkedIn)", u:"Bangun reputasi. <b>Nyatanya:</b> menulis tentang yang kamu bangun menarik peluang & memperkuat posisimu sebagai AI engineer."},
+        {t:"Ikuti riset & rilis terbaru", u:"AI berubah tiap minggu. <b>Nyatanya:</b> kebiasaan belajar berkelanjutan = kunci tetap relevan di bidang yang bergerak paling cepat."},
+        {t:"Bergabung komunitas AI", u:"Jaringan & peluang. <b>Nyatanya:</b> banyak peluang kerja & kolaborasi lahir dari komunitas, bukan dari portal lamaran."},
+        {t:"Kompetisi Kaggle (opsional)", u:"Asah skill di masalah nyata. <b>Nyatanya:</b> bukti terukur & peringkat yang bisa kamu cantumkan di CV AI-mu."}
+      ],
+      res:[{n:"Kaggle — Competitions",u:"https://www.kaggle.com/competitions"},{n:"Papers with Code",u:"https://paperswithcode.com/"}]}
+  ]
+}
+];
+
+/* ============================================================
+   STATE & RENDER
+   ============================================================ */
+const STORE_KEY = "roadmap-se-ai-progress-v1";
+let state = {};
+try{ state = JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }catch(e){ state = {}; }
+
+/* progress per sub-item di "Yang kamu pelajari" (terpisah dari status topik) */
+const SUB_KEY = "roadmap-se-ai-subprogress-v1";
+let subState = {};
+try{ subState = JSON.parse(localStorage.getItem(SUB_KEY)) || {}; }catch(e){ subState = {}; }
+function subSet(id){ return new Set(subState[id] || []); }
+function subToggle(id, idx){
+  const s = subSet(id);
+  if(s.has(idx)) s.delete(idx); else s.add(idx);
+  const arr = [...s].sort((a,b)=>a-b);
+  if(arr.length) subState[id] = arr; else delete subState[id];
+  localStorage.setItem(SUB_KEY, JSON.stringify(subState));
+}
+function updateLearnCount(id){
+  const el = document.getElementById("learnCount");
+  if(!el) return;
+  el.textContent = `${subSet(id).size}/${topicIndex[id].topic.learn.length}`;
+}
+
+const ICON = {todo:"○", learning:"◐", done:"✓", skip:"⤳"};
+const LV = {wajib:{cls:"b-wajib",txt:"Wajib",col:"#f6c945"}, saran:{cls:"b-saran",txt:"Disarankan",col:"#22a06b"}, opsi:{cls:"b-opsi",txt:"Opsional",col:"#8b5cf6"}};
+const DOTCOL = {todo:"#ffffff", learning:"#3b82f6", done:"#22a06b", skip:"#94a3b8"};
+const DOTRING = {todo:"#cfd6e4", learning:"#3b82f6", done:"#22a06b", skip:"#94a3b8"};
+
+const root = document.getElementById("roadmap");
+let topicIndex = {};
+
+function st(id){ return state[id] || "todo"; }
+
+function buildTopicCard(t){
+  const lv = LV[t.level];
+  const status = st(t.id);
+  const card = document.createElement("div");
+  card.className = "topic-card";
+  card.dataset.id = t.id;
+  card.dataset.st = status;
+  card.style.setProperty("--lv", lv.col);
+  card.innerHTML = `
+    <div class="tc-head">
+      <h3>${t.title}</h3>
+      <button class="status-btn" title="Ubah status">${ICON[status]}</button>
+    </div>
+    <div class="tc-tag">${t.tag}</div>
+    <div class="topic-meta">
+      <span class="badge ${lv.cls}">${lv.txt}</span>
+      <span class="badge b-time">⏱ ${t.time}</span>
+    </div>`;
+  card.addEventListener("click", ()=> openDrawer(t.id));
+  card.querySelector(".status-btn").addEventListener("click",(e)=>{ e.stopPropagation(); cycleStatus(t.id); });
+  return card;
+}
+
+function render(){
+  root.innerHTML = "";
+  topicIndex = {};
+  PHASES.forEach((p)=>{
+    const marker = document.createElement("div");
+    marker.className = "phase-marker";
+    marker.style.setProperty("--pc", p.color);
+    marker.innerHTML = `<div class="pm-box">
+      <div class="pm-top">
+        <span class="pm-num">${p.num}</span>
+        <span class="pm-prog" id="pp-${p.id}"></span>
+      </div>
+      <h2>${p.title}</h2>
+      <div class="pm-sub">${p.sub}</div>
+      <span class="pm-time">${p.time}</span>
+    </div>`;
+    root.appendChild(marker);
+    p.topics.forEach((t,i)=>{
+      topicIndex[t.id] = {topic:t, phase:p};
+      const row = document.createElement("div");
+      row.className = "topic-row " + (i%2===0 ? "left" : "right");
+      const status = st(t.id);
+      row.style.setProperty("--dot", DOTCOL[status]);
+      row.style.setProperty("--dotring", DOTRING[status]);
+      row.dataset.id = t.id;
+      row.appendChild(buildTopicCard(t));
+      root.appendChild(row);
+    });
+  });
+  updateProgress();
+}
+
+function cycleStatus(id){
+  const order = ["todo","learning","done","skip"];
+  const cur = st(id);
+  setStatus(id, order[(order.indexOf(cur)+1)%order.length]);
+}
+
+function setStatus(id,val){
+  if(val==="todo"){ delete state[id]; } else { state[id]=val; }
+  localStorage.setItem(STORE_KEY, JSON.stringify(state));
+  const card = root.querySelector(`.topic-card[data-id="${id}"]`);
+  if(card){ card.dataset.st = val; card.querySelector(".status-btn").textContent = ICON[val]; }
+  const row = root.querySelector(`.topic-row[data-id="${id}"]`);
+  if(row){ row.style.setProperty("--dot", DOTCOL[val]); row.style.setProperty("--dotring", DOTRING[val]); }
+  syncDrawerStatus(id);
+  updateProgress();
+}
+
+function updateProgress(){
+  let total=0, done=0;
+  PHASES.forEach(p=>{
+    let pt=0, pd=0;
+    p.topics.forEach(t=>{ total++; pt++; if(st(t.id)==="done"){done++; pd++;} });
+    const el = document.getElementById("pp-"+p.id);
+    if(el){ el.textContent = `✓ ${pd}/${pt}`; el.classList.toggle("done", pd===pt && pt>0); }
+  });
+  const pct = total? Math.round(done/total*100) : 0;
+  document.getElementById("progFill").style.width = pct+"%";
+  document.getElementById("progTxt").textContent = `${pct}% selesai · ${done}/${total} topik`;
+}
+
+/* ---------- DRAWER ---------- */
+const drawer = document.getElementById("drawer");
+const overlay = document.getElementById("overlay");
+let openId = null;
+
+function openDrawer(id){
+  const {topic:t, phase:p} = topicIndex[id];
+  openId = id;
+  const lv = LV[t.level];
+  document.getElementById("dTitle").textContent = t.title;
+  document.getElementById("dMeta").innerHTML =
+    `<span class="badge ${lv.cls}">${lv.txt}</span>
+     <span class="badge b-time">⏱ ${t.time}</span>
+     <span class="badge b-time" style="background:${p.color}1a;color:${p.color}">${p.num}</span>`;
+  const subChecked = subSet(id);
+  const learnList = t.learn.map((x,idx)=>{
+    const on = subChecked.has(idx);
+    return `<li class="${on?'checked':''}" data-idx="${idx}"><span class="chk" role="checkbox" aria-checked="${on}" tabindex="0" title="Tandai sudah dipelajari">✓</span><span class="lc"><span class="lt">${x.t}</span><span class="lu">${x.u}</span></span></li>`;
+  }).join("");
+  const resList = t.res.map(r=>{
+    let host=""; try{ host = new URL(r.u).hostname.replace("www.",""); }catch(e){}
+    return `<a href="${r.u}" target="_blank" rel="noopener"><span class="rico">🔗</span><span>${r.n}</span><span class="rurl">${host}</span></a>`;
+  }).join("");
+  const cur = st(id);
+  const picks = [["todo","Belum"],["learning","Belajar"],["done","Selesai"],["skip","Lewati"]]
+    .map(([v,l])=>`<button class="st-pick ${v===cur?'active':''}" data-v="${v}">${l}</button>`).join("");
+  document.getElementById("dBody").innerHTML = `
+    <div class="st-row" id="stPick">${picks}</div>
+    <h4>Kenapa ini penting</h4>
+    <p>${t.why}</p>
+    <h4 class="g">Yang kamu pelajari &amp; kegunaannya <span class="learn-count" id="learnCount"></span></h4>
+    <ul class="learn-list">${learnList}</ul>
+    <h4>Resource belajar</h4>
+    <div class="res">${resList}</div>
+  `;
+  document.querySelectorAll("#stPick .st-pick").forEach(b=>{
+    b.addEventListener("click",()=> setStatus(id, b.dataset.v));
+  });
+  document.querySelectorAll("#dBody .learn-list li").forEach(li=>{
+    const idx = parseInt(li.dataset.idx,10);
+    const chk = li.querySelector(".chk");
+    const toggle = ()=>{
+      subToggle(id, idx);
+      const on = subSet(id).has(idx);
+      li.classList.toggle("checked", on);
+      chk.setAttribute("aria-checked", on);
+      updateLearnCount(id);
+    };
+    chk.addEventListener("click", toggle);
+    chk.addEventListener("keydown",(e)=>{ if(e.key===" "||e.key==="Enter"){ e.preventDefault(); toggle(); } });
+  });
+  updateLearnCount(id);
+  drawer.classList.add("open");
+  overlay.classList.add("open");
+  drawer.setAttribute("aria-hidden","false");
+  document.getElementById("dBody").scrollTop = 0;
+}
+function syncDrawerStatus(id){
+  if(openId!==id || !drawer.classList.contains("open")) return;
+  const cur = st(id);
+  document.querySelectorAll("#stPick .st-pick").forEach(b=> b.classList.toggle("active", b.dataset.v===cur));
+}
+function closeDrawer(){
+  drawer.classList.remove("open");
+  overlay.classList.remove("open");
+  drawer.setAttribute("aria-hidden","true");
+  openId=null;
+}
+document.getElementById("closeDrawer").addEventListener("click", closeDrawer);
+overlay.addEventListener("click", closeDrawer);
+document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") closeDrawer(); });
+
+document.getElementById("resetBtn").addEventListener("click",()=>{
+  if(confirm("Hapus semua progress belajar?")){ state={}; subState={}; localStorage.removeItem(STORE_KEY); localStorage.removeItem(SUB_KEY); render(); }
+});
+
+render();
+</script>
+</body>
+</html>
