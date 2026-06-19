@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Roadmap: Software Engineer → AI → Kerja di Singapura</title>
+<script>/* set tema sedini mungkin agar tidak ada kilatan terang di malam hari */(function(){try{var t=localStorage.getItem("roadmap-se-ai-theme");if(!t){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <style>
   :root{
     --bg:#f6f7fb;
@@ -158,11 +159,12 @@
   /* learn list with real-case purpose + checkbox per item */
   .learn-count{font-size:11px;font-weight:800;color:#13714c;background:var(--green-soft);border:1px solid #bfe6d2;padding:2px 9px;border-radius:999px;margin-left:6px;vertical-align:middle}
   .learn-list{list-style:none;margin:8px 0 0;padding:0}
-  .learn-list li{display:flex;gap:11px;align-items:flex-start;padding:11px 0 12px;border-bottom:1px dashed #e6e9f0}
+  .learn-list li{display:flex;gap:11px;align-items:flex-start;padding:11px 0 12px;border-bottom:1px dashed #e6e9f0;cursor:pointer}
+  .learn-list li:hover .chk{border-color:var(--green)}
   .learn-list li:last-child{border-bottom:none}
-  .learn-list .chk{flex:0 0 auto;width:21px;height:21px;margin-top:1px;border:2px solid #cfd6e4;border-radius:6px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;line-height:1;transition:.15s;user-select:none}
+  .learn-list .chk{flex:0 0 auto;width:21px;height:21px;margin-top:1px;border:2px solid #cfd6e4;border-radius:6px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:transparent;line-height:1;transition:.15s;user-select:none}
   .learn-list .chk:hover{border-color:var(--green)}
-  .learn-list li.checked .chk{background:var(--green);border-color:var(--green)}
+  .learn-list li.checked .chk{background:var(--green);border-color:var(--green);color:#fff}
   .learn-list .lc{flex:1;min-width:0}
   .learn-list .lt{display:block;font-size:14.5px;font-weight:750;color:#1f2430;line-height:1.35}
   .learn-list li.checked .lt{text-decoration:line-through;text-decoration-color:#9fd3ba;color:#7a8aa0}
@@ -195,6 +197,56 @@
     .topic-row::after{left:22px}
     .topic-row::before{left:22px;width:26px;right:auto !important}
   }
+
+  /* ============ DARK MODE ============ */
+  :root[data-theme="dark"]{
+    --bg:#0e1320;
+    --ink:#e7ebf3;
+    --muted:#aab4c8;
+    --card:#171d2b;
+    --line:#2a3346;
+    --spine:#2a3346;
+    --green-soft:#15331f;
+    --blue-soft:#152844;
+    --shadow:0 6px 22px rgba(0,0,0,.5);
+    --shadow-h:0 14px 34px rgba(0,0,0,.65);
+  }
+  :root[data-theme="dark"] body{
+    background:
+      radial-gradient(900px 500px at 100% -5%, #241f0e 0, rgba(0,0,0,0) 55%),
+      radial-gradient(900px 500px at 0% 0%, #111a30 0, rgba(0,0,0,0) 55%),
+      var(--bg);
+  }
+  :root[data-theme="dark"] .hero .kicker{background:#2a2410;border-color:#4a3f17;color:#f6c945}
+  :root[data-theme="dark"] .profile span{background:#171d2b;color:#c4ccdc}
+  :root[data-theme="dark"] .toolbar{background:rgba(14,19,32,.85)}
+  :root[data-theme="dark"] .legend{color:#c4ccdc}
+  :root[data-theme="dark"] .progress-bar{background:#252e42}
+  :root[data-theme="dark"] .btn{background:#1c2435;color:#c4ccdc}
+  :root[data-theme="dark"] .pm-box{background:linear-gradient(180deg,#1a2130,#161c29);color:var(--ink)}
+  :root[data-theme="dark"] .pm-prog{background:#222b3e;color:#c4ccdc}
+  :root[data-theme="dark"] .pm-prog.done{background:#15331f;color:#7fd6a6;border-color:#2c5a3d}
+  :root[data-theme="dark"] .pm-time{background:#222b3e;color:#c4ccdc}
+  :root[data-theme="dark"] .topic-row::after{border-color:var(--card)}
+  :root[data-theme="dark"] .status-btn{background:#1c2435;color:#c4ccdc}
+  :root[data-theme="dark"] .topic-card[data-st="done"]{background:#15281d;border-color:#2c5a3d}
+  :root[data-theme="dark"] .topic-card[data-st="done"] h3{color:#9fe0bd}
+  :root[data-theme="dark"] .topic-card[data-st="learning"]{background:#15243a;border-color:#2d4a73}
+  :root[data-theme="dark"] .drawer{background:#141a27}
+  :root[data-theme="dark"] .drawer-head .close{background:#222b3e;color:#c4ccdc}
+  :root[data-theme="dark"] .drawer-head .close:hover{background:#2c3650}
+  :root[data-theme="dark"] .drawer-body p{color:#c4ccdc}
+  :root[data-theme="dark"] .learn-list li{border-bottom-color:#252e42}
+  :root[data-theme="dark"] .learn-list .lt{color:var(--ink)}
+  :root[data-theme="dark"] .learn-list li.checked .lt{color:#6f7d96}
+  :root[data-theme="dark"] .learn-list .lu b{color:#aeb8cb}
+  :root[data-theme="dark"] .learn-list .chk{background:#1c2435;border-color:#3a455f}
+  :root[data-theme="dark"] .learn-list li.checked .chk{background:var(--green);border-color:var(--green);color:#fff}
+  :root[data-theme="dark"] .learn-count{background:#15331f;color:#7fd6a6;border-color:#2c5a3d}
+  :root[data-theme="dark"] .res a{background:#1a2130;color:var(--ink)}
+  :root[data-theme="dark"] .res a:hover{border-color:var(--yellow)}
+  :root[data-theme="dark"] .st-pick{background:#1c2435;color:#c4ccdc}
+  :root[data-theme="dark"] .ft-note{background:#171d2b}
 </style>
 </head>
 <body>
@@ -222,6 +274,7 @@
         <span><i class="dotL" style="background:#f6c945"></i><b>Wajib</b></span>
         <span><i class="dotL" style="background:#22a06b"></i><b>Disarankan</b></span>
         <span><i class="dotL" style="background:#8b5cf6"></i><b>Opsional</b></span>
+        <button class="btn" id="themeBtn" title="Ganti tema terang/gelap">🌙 Gelap</button>
         <button class="btn" id="resetBtn" title="Hapus semua progress">↺ Reset</button>
       </div>
     </div>
@@ -888,7 +941,7 @@ function openDrawer(id){
   const subChecked = subSet(id);
   const learnList = t.learn.map((x,idx)=>{
     const on = subChecked.has(idx);
-    return `<li class="${on?'checked':''}" data-idx="${idx}"><span class="chk" role="checkbox" aria-checked="${on}" tabindex="0" title="Tandai sudah dipelajari">✓</span><span class="lc"><span class="lt">${x.t}</span><span class="lu">${x.u}</span></span></li>`;
+    return `<li class="${on?'checked':''}" data-idx="${idx}" role="checkbox" aria-checked="${on}" tabindex="0" title="Klik untuk menandai sudah dipelajari"><span class="chk" aria-hidden="true">✓</span><span class="lc"><span class="lt">${x.t}</span><span class="lu">${x.u}</span></span></li>`;
   }).join("");
   const resList = t.res.map(r=>{
     let host=""; try{ host = new URL(r.u).hostname.replace("www.",""); }catch(e){}
@@ -911,16 +964,16 @@ function openDrawer(id){
   });
   document.querySelectorAll("#dBody .learn-list li").forEach(li=>{
     const idx = parseInt(li.dataset.idx,10);
-    const chk = li.querySelector(".chk");
-    const toggle = ()=>{
+    const toggle = (e)=>{
+      if(e){ e.preventDefault(); e.stopPropagation(); }
       subToggle(id, idx);
       const on = subSet(id).has(idx);
       li.classList.toggle("checked", on);
-      chk.setAttribute("aria-checked", on);
+      li.setAttribute("aria-checked", on ? "true" : "false");
       updateLearnCount(id);
     };
-    chk.addEventListener("click", toggle);
-    chk.addEventListener("keydown",(e)=>{ if(e.key===" "||e.key==="Enter"){ e.preventDefault(); toggle(); } });
+    li.addEventListener("click", toggle);
+    li.addEventListener("keydown",(e)=>{ if(e.key===" "||e.key==="Enter") toggle(e); });
   });
   updateLearnCount(id);
   drawer.classList.add("open");
@@ -946,6 +999,18 @@ document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") closeDrawer(); }
 document.getElementById("resetBtn").addEventListener("click",()=>{
   if(confirm("Hapus semua progress belajar?")){ state={}; subState={}; localStorage.removeItem(STORE_KEY); localStorage.removeItem(SUB_KEY); render(); }
 });
+
+/* ---------- DARK / LIGHT THEME ---------- */
+const THEME_KEY = "roadmap-se-ai-theme";
+function currentTheme(){ return document.documentElement.getAttribute("data-theme") || "light"; }
+function applyTheme(t){
+  document.documentElement.setAttribute("data-theme", t);
+  try{ localStorage.setItem(THEME_KEY, t); }catch(e){}
+  const b = document.getElementById("themeBtn");
+  if(b) b.textContent = (t === "dark") ? "☀️ Terang" : "🌙 Gelap";
+}
+applyTheme(currentTheme());
+document.getElementById("themeBtn").addEventListener("click", ()=> applyTheme(currentTheme()==="dark" ? "light" : "dark"));
 
 render();
 </script>
